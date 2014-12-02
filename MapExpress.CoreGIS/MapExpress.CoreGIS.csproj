@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{87FAE5AC-6854-4D23-9D53-E5342E751D8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MapExpress.CoreGIS</RootNamespace>
+    <AssemblyName>MapExpress.CoreGIS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Geometries\BoundingBox.cs" />
+    <Compile Include="Geometries\Converters\GeoJSONGeometryReader.cs" />
+    <Compile Include="Geometries\Converters\GeoJSONGeometryWriter.cs" />
+    <Compile Include="Geometries\Converters\TextGeometryReader.cs" />
+    <Compile Include="Geometries\Converters\TextGeometryWriter.cs" />
+    <Compile Include="Geometries\Converters\WKBGeometryReader.cs" />
+    <Compile Include="Geometries\Converters\WKBGeometryType.cs" />
+    <Compile Include="Geometries\Converters\WKBGeometryWriter.cs" />
+    <Compile Include="Geometries\Converters\WKTGeometryReader.cs" />
+    <Compile Include="Geometries\Converters\WKTGeometryWriter.cs" />
+    <Compile Include="Geometries\Curve.cs" />
+    <Compile Include="Geometries\Envelope.cs" />
+    <Compile Include="Geometries\Geometry.cs" />
+    <Compile Include="Geometries\GeometryCollection.cs" />
+    <Compile Include="Geometries\LinearRing.cs" />
+    <Compile Include="Geometries\LineString.cs" />
+    <Compile Include="Geometries\MultiCurve.cs" />
+    <Compile Include="Geometries\MultiLineString.cs" />
+    <Compile Include="Geometries\MultiPoint.cs" />
+    <Compile Include="Geometries\MultiPolygon.cs" />
+    <Compile Include="Geometries\Point.cs" />
+    <Compile Include="Geometries\Polygon.cs" />
+    <Compile Include="MapExpressException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Referencing\Converters\ICoordinateSystemReader.cs" />
+    <Compile Include="Referencing\Converters\ICoordinateSystemWriter.cs" />
+    <Compile Include="Referencing\Converters\Proj4CoordinateSystemReader.cs" />
+    <Compile Include="Referencing\Converters\Proj4CoordinateSystemWriter.cs" />
+    <Compile Include="Referencing\Converters\Proj4Keywords.cs" />
+    <Compile Include="Referencing\Converters\WKTCoordinateSystemReader.cs" />
+    <Compile Include="Referencing\Converters\WKTCoordinateSystemWriter.cs" />
+    <Compile Include="Referencing\Coordinate.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\CompoundCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\CoordinateReferenceSystem.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\CoordinateReferenceSystemFactory.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\DerivedCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\EngineeringCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\GeocentricCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\GeodeticCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\GeographicCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\ImageCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\ProjectedCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\SingleCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\TemporalCRS.cs" />
+    <Compile Include="Referencing\CoordinateReferenceSystems\VerticalCRS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\AffineCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\CartesianCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\CoordinateSystem.cs" />
+    <Compile Include="Referencing\CoordinateSystems\CoordinateSystemAxis.cs" />
+    <Compile Include="Referencing\CoordinateSystems\CoordinateSystemFactory.cs" />
+    <Compile Include="Referencing\CoordinateSystems\CylindricalCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\EllipsoidalCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\LinearCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\PolarCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\SphericalCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\TimeCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\UserDefinedCS.cs" />
+    <Compile Include="Referencing\CoordinateSystems\VerticalCS.cs" />
+    <Compile Include="Referencing\Datums\Datum.cs" />
+    <Compile Include="Referencing\Datums\DatumFactory.cs" />
+    <Compile Include="Referencing\Datums\Ellipsoid.cs" />
+    <Compile Include="Referencing\Datums\EngineeringDatum.cs" />
+    <Compile Include="Referencing\Datums\GeodeticDatum.cs" />
+    <Compile Include="Referencing\Datums\ImageDatum.cs" />
+    <Compile Include="Referencing\Datums\PrimeMeridian.cs" />
+    <Compile Include="Referencing\Datums\TemporalDatum.cs" />
+    <Compile Include="Referencing\Datums\VerticalDatum.cs" />
+    <Compile Include="Referencing\GeographicCoordinate.cs" />
+    <Compile Include="Referencing\Operations\CoordinateOperationException.cs" />
+    <Compile Include="Referencing\Operations\GeocentricGeographicConversion.cs" />
+    <Compile Include="Referencing\Operations\GeometryCoordinateTransform.cs" />
+    <Compile Include="Referencing\Operations\Parameters\DatumShiftParameters.cs" />
+    <Compile Include="Referencing\Operations\Parameters\Parameter.cs" />
+    <Compile Include="Referencing\Operations\Parameters\ParameterGroup.cs" />
+    <Compile Include="Referencing\Operations\Parameters\ProjectionParameters.cs" />
+    <Compile Include="Referencing\Operations\Projections\AlbersConicEqualArea.cs" />
+    <Compile Include="Referencing\Operations\Projections\AzimuthalEquidistant.cs" />
+    <Compile Include="Referencing\Operations\Projections\CassiniSoldner.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert1.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert2.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert3.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert4.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert5.cs" />
+    <Compile Include="Referencing\Operations\Projections\Eckert6.cs" />
+    <Compile Include="Referencing\Operations\Projections\EquidistantConic.cs" />
+    <Compile Include="Referencing\Operations\Projections\EquidistantCylindrical.cs" />
+    <Compile Include="Referencing\Operations\Projections\Gauss.cs" />
+    <Compile Include="Referencing\Operations\Projections\Gnomonic.cs" />
+    <Compile Include="Referencing\Operations\Projections\Krovak.cs" />
+    <Compile Include="Referencing\Operations\Projections\LambertAzimuthalEqualArea.cs" />
+    <Compile Include="Referencing\Operations\Projections\LambertConformalConic.cs" />
+    <Compile Include="Referencing\Operations\Projections\LambertCylindricalEqualArea.cs" />
+    <Compile Include="Referencing\Operations\Projections\Mercator1SP.cs" />
+    <Compile Include="Referencing\Operations\Projections\Mercator2SP.cs" />
+    <Compile Include="Referencing\Operations\Projections\MercatorGridZoneLocator.cs" />
+    <Compile Include="Referencing\Operations\Projections\MillerCylindrical.cs" />
+    <Compile Include="Referencing\Operations\Projections\Mollweide.cs" />
+    <Compile Include="Referencing\Operations\Projections\ObliqueMercator.cs" />
+    <Compile Include="Referencing\Operations\Projections\ObliqueStereographic.cs" />
+    <Compile Include="Referencing\Operations\Projections\PolarStereographic.cs" />
+    <Compile Include="Referencing\Operations\Projections\Projection.cs" />
+    <Compile Include="Referencing\Operations\Projections\SphericalMercator.cs" />
+    <Compile Include="Referencing\Operations\Projections\TransverseMercator.cs" />
+    <Compile Include="Referencing\Operations\Projections\VanDerGrinten.cs" />
+    <Compile Include="Referencing\Operations\Projections\Wagner2.cs" />
+    <Compile Include="Referencing\Operations\SingleCoordinateOperation.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\AbridgedMolodensky.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\CoordinateFrameRotation.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\DatumTransform.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\GeocentricTranslation.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\GeographicTransform.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\Molodensky.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\MolodenskyBadekas.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\PositionVector.cs" />
+    <Compile Include="Referencing\Operations\Transfomations\Transformation.cs" />
+    <Compile Include="Referencing\Registry\AuthorityObjectRegistry.cs" />
+    <Compile Include="Referencing\Registry\DatumRegistry.cs" />
+    <Compile Include="Referencing\Registry\EllipsoidRegistry.cs" />
+    <Compile Include="Referencing\Registry\GeographicCRSRegistry.cs" />
+    <Compile Include="Referencing\Registry\PrimeMeridianRegistry.cs" />
+    <Compile Include="Referencing\Registry\ProjectionRegistry.cs" />
+    <Compile Include="Referencing\Units\AngularUnit.cs" />
+    <Compile Include="Referencing\Units\AreaUnit.cs" />
+    <Compile Include="Referencing\Units\LinearUnit.cs" />
+    <Compile Include="Referencing\Units\TimeUnit.cs" />
+    <Compile Include="Referencing\Units\Unit.cs" />
+    <Compile Include="Utils\BigEndianBitConverter.cs" />
+    <Compile Include="Utils\ByteOrderType.cs" />
+    <Compile Include="Utils\ByteUtils.cs" />
+    <Compile Include="Utils\Json\FastJsonParser.cs" />
+    <Compile Include="Utils\Json\IJsonWrapper.cs" />
+    <Compile Include="Utils\Json\JsonData.cs" />
+    <Compile Include="Utils\Json\JsonException.cs" />
+    <Compile Include="Utils\Json\JsonMapper.cs" />
+    <Compile Include="Utils\Json\JsonMockWrapper.cs" />
+    <Compile Include="Utils\Json\JsonReader.cs" />
+    <Compile Include="Utils\Json\JsonWriter.cs" />
+    <Compile Include="Utils\Json\Lexer.cs" />
+    <Compile Include="Utils\Json\ParserToken.cs" />
+    <Compile Include="Utils\MathUtil.cs" />
+    <Compile Include="Utils\Matrix.cs" />
+    <Compile Include="Utils\StreamTokenizer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MapExpress.OpenGIS\MapExpress.OpenGIS.csproj">
+      <Project>{6EA7AEA9-3A25-4E55-BDC2-DCC2C73E79C9}</Project>
+      <Name>MapExpress.OpenGIS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

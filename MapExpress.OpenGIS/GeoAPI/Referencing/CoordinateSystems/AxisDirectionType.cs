@@ -1,0 +1,38 @@
+namespace MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateSystems
+{
+    public enum AxisDirectionType
+    {
+        NORTH,
+        NORTH_NORTH_EAST,
+        NORTH_EAST,
+        EAST_NORTH_EAST,
+        EAST,
+        EAST_SOUTH_EAST,
+        SOUTH_EAST,
+        SOUTH_SOUTH_EAST,
+        SOUTH,
+        SOUTH_SOUTH_WEST,
+        SOUTH_WEST,
+        WEST_SOUTH_WEST,
+        WEST,
+        WEST_NORTH_WEST,
+        NORTH_WEST,
+        NORTH_NORTH_WEST,
+        UP,
+        DOWN,
+        GEOCENTRIC_X,
+        GEOCENTRIC_Y,
+        GEOCENTRIC_Z,
+        FUTURE,
+        PAST,
+        COLUMN_POSITIVE,
+        COLUMN_NEGATIVE,
+        ROW_POSITIVE,
+        ROW_NEGATIVE,
+        DISPLAY_RIGHT,
+        DISPLAY_LEFT,
+        DISPLAY_UP,
+        DISPLAY_DOWN,
+        OTHER
+    }
+}

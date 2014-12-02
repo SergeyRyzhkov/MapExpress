@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6EA7AEA9-3A25-4E55-BDC2-DCC2C73E79C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MapExpress.OpenGIS</RootNamespace>
+    <AssemblyName>MapExpress.OpenGIS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="GeoAPI\Authority\Authority.cs" />
+    <Compile Include="GeoAPI\Authority\AuthorityList.cs" />
+    <Compile Include="GeoAPI\Authority\AuthorityType.cs" />
+    <Compile Include="GeoAPI\Authority\IAuthorityObject.cs" />
+    <Compile Include="GeoAPI\Geometries\GeometryType.cs" />
+    <Compile Include="GeoAPI\Geometries\ICurve.cs" />
+    <Compile Include="GeoAPI\Geometries\IEnvelope.cs" />
+    <Compile Include="GeoAPI\Geometries\IGeometry.cs" />
+    <Compile Include="GeoAPI\Geometries\IGeometryCollection.cs" />
+    <Compile Include="GeoAPI\Geometries\ILinearRing.cs" />
+    <Compile Include="GeoAPI\Geometries\ILineString.cs" />
+    <Compile Include="GeoAPI\Geometries\IMultiCurve.cs" />
+    <Compile Include="GeoAPI\Geometries\IMultiLineString.cs" />
+    <Compile Include="GeoAPI\Geometries\IMultiPoint.cs" />
+    <Compile Include="GeoAPI\Geometries\IMultiPolygon.cs" />
+    <Compile Include="GeoAPI\Geometries\IPoint.cs" />
+    <Compile Include="GeoAPI\Geometries\IPolygon.cs" />
+    <Compile Include="GeoAPI\Parameters\IGeneralParameterDescriptor.cs" />
+    <Compile Include="GeoAPI\Parameters\IGeneralParameterValue.cs" />
+    <Compile Include="GeoAPI\Parameters\IParameterDescriptor.cs" />
+    <Compile Include="GeoAPI\Parameters\IParameterDescriptorGroup.cs" />
+    <Compile Include="GeoAPI\Parameters\IParameterValue.cs" />
+    <Compile Include="GeoAPI\Parameters\IParameterValueGroup.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\ICompoundCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\ICoordinateReferenceSystem.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\ICoordinateReferenceSystemFactory.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IDerivedCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IEngineeringCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IGeocentricCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IGeodeticCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IGeographicCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IImageCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IProjectedCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\ISingleCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\ITemporalCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateReferenceSystems\IVerticalCRS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\AxisDirectionType.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\IAffineCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ICartesianCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ICoordinateSystem.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ICoordinateSystemAxis.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ICSFactory.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ICylindricalCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\IEllipsoidalCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ILinearCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\IPolarCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ISphericalCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\ITimeCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\IUserDefinedCS.cs" />
+    <Compile Include="GeoAPI\Referencing\CoordinateSystems\IVerticalCS.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IDatumFactory.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IEllipsoid.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IEngineeringDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IGeodeticDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IImageDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IPrimeMeridian.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\ITemporalDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\IVerticalDatum.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\PixelInCellType.cs" />
+    <Compile Include="GeoAPI\Referencing\Datum\VerticalDatumType.cs" />
+    <Compile Include="GeoAPI\Referencing\ICoordinate.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\IConcatenatedOperation.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\IConversion.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\ICoordinateOperation.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\ICoordinateOperationFactory.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\IMathTransform.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\IOperationMethod.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\IProjection.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\ISingleOperation.cs" />
+    <Compile Include="GeoAPI\Referencing\Operations\ITransformation.cs" />
+    <Compile Include="GeoAPI\Referencing\Units\IAngularUnit.cs" />
+    <Compile Include="GeoAPI\Referencing\Units\ILinearUnit.cs" />
+    <Compile Include="GeoAPI\Referencing\Units\IUnit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wms\Metadata\BoundingBox.cs" />
+    <Compile Include="Wms\Metadata\ContactAddress.cs" />
+    <Compile Include="Wms\Metadata\ContactInformation.cs" />
+    <Compile Include="Wms\Metadata\ContactPerson.cs" />
+    <Compile Include="Wms\Metadata\LatLonBoundingBox.cs" />
+    <Compile Include="Wms\Metadata\LayerInfo.cs" />
+    <Compile Include="Wms\Metadata\LayerStyle.cs" />
+    <Compile Include="Wms\Metadata\Legend.cs" />
+    <Compile Include="Wms\Metadata\Metadata.cs" />
+    <Compile Include="Wms\Metadata\MimeType.cs" />
+    <Compile Include="Wms\Metadata\OnlineResource.cs" />
+    <Compile Include="Wms\Metadata\OperationInfo.cs" />
+    <Compile Include="Wms\Metadata\ServiceCapability.cs" />
+    <Compile Include="Wms\Metadata\ServiceDescription.cs" />
+    <Compile Include="Wms\Metadata\WmsServiceMetadata.cs" />
+    <Compile Include="Wms\Operations\FeatureInfoRequest.cs" />
+    <Compile Include="Wms\Operations\FeatureInfoResponse.cs" />
+    <Compile Include="Wms\Operations\IWmsRequest.cs" />
+    <Compile Include="Wms\Operations\IWmsResponse.cs" />
+    <Compile Include="Wms\Operations\MapAttributes.cs" />
+    <Compile Include="Wms\Operations\MapRequest.cs" />
+    <Compile Include="Wms\Operations\MapResponse.cs" />
+    <Compile Include="Wms\Operations\MetadataRequest.cs" />
+    <Compile Include="Wms\Operations\MetadataResponse.cs" />
+    <Compile Include="Wms\WmsException.cs" />
+    <Compile Include="Wms\WmsService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Wms\Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
