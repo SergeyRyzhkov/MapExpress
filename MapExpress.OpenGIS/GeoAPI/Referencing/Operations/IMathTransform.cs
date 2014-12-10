@@ -12,12 +12,19 @@ namespace MapExpress.OpenGIS.GeoAPI.Referencing.Operations
 
         int TargetDimensions { get; }
 
+        // TODO: Может добавить?
+        //double[] Transform (double x, double y);
+
         double[] Transform (double x, double y, double z);
 
         ICoordinate Transform (ICoordinate point);
 
         ICollection <ICoordinate> Transform (ICollection <ICoordinate> points);
 
-        IMathTransform Inverse ();
+        double[] TransformInverse (double x, double y, double z);
+
+        ICoordinate TransformInverse (ICoordinate point);
+
+        ICollection<ICoordinate> TransformInverse (ICollection<ICoordinate> points);
     }
 }

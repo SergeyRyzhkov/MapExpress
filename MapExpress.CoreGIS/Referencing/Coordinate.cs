@@ -8,6 +8,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing;
 namespace MapExpress.CoreGIS.Referencing
 {
     //TODO: Может геоцентрик или картезиан ?
+    // Или GeographicCoordinate убрать и сделать все в одном классе
     public struct Coordinate : ICoordinate
     {
         public static ICoordinate NullCoordinate = new Coordinate (double.NaN, double.NaN, double.NaN);

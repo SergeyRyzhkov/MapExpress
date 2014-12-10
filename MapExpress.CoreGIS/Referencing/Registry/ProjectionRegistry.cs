@@ -38,6 +38,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
 
 
         // TODO: Приделать все алиасы
+        // TODO: Обязательно инициализировать константы!
 
         private ProjectionRegistry ()
         {

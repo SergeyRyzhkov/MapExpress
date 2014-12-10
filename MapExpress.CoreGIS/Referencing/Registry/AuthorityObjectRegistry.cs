@@ -56,6 +56,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
             throw new MapExpressException (string.Format ("Object not found"));
         }
 
+        // TODO: Если не используется - убрать. Опасный метл
         public virtual T GetByAuthority (string authorityString)
         {
             AuthorityType type;

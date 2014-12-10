@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Globalization;
-using System.Text;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 {
     public class DatumShiftParameters : ParameterGroup, IEquatable <DatumShiftParameters>
     {
-        //private static DatumShiftParameters allParameters;
-        //private static readonly AuthorityList allParametersAuthorityList = new AuthorityList ();
         public static DatumShiftParameters ZERO = new DatumShiftParameters ();
-
-        //static DatumShiftParameters ()
-        //{
-        // InitializeAllParameters ();
-        //}
 
         public DatumShiftParameters ()
         {
@@ -131,67 +122,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
             set { CreateOrReplaceParameter ("Pz", value, false); }
         }
 
-        public double Da
-        {
-            get { return GetParameterValue ("Da"); }
-            set { CreateOrReplaceParameter ("Da", value, false).AddAlias ("Semi-major axis length difference", AuthorityType.EPSG); }
-        }
-
-        public double Df
-        {
-            get { return GetParameterValue ("Df"); }
-            set { CreateOrReplaceParameter ("Df", value, false).AddAlias ("Flattening_difference", AuthorityType.EPSG); }
-        }
-
-        //public static bool IsParamNameValid (string paramName)
-        //{
-        //    return allParametersAuthorityList.Contains (paramName);
-        //}
-
-        //public static bool IsParamNameValid (AuthorityType type,string paramName)
-        //{
-        //    return allParametersAuthorityList.Contains (type, paramName);
-        //}
-
-        //public static bool TryConvertName (string sourceName, AuthorityType authorityType, out string authorityName)
-        //{
-        //    authorityName = null;
-        //    foreach (Parameter iterParam in allParameters.Values)
-        //    {
-        //        if (iterParam.AuthorityList.TryConvertName (sourceName, authorityType, out authorityName))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
-        //private static void InitializeAllParameters ()
-        //{
-        //    if (allParameters == null)
-        //    {
-        //        allParameters = new DatumShiftParameters
-        //                            {
-        //                                Dx = 0,
-        //                                Dy = 0,
-        //                                Ex = 0,
-        //                                Ey = 0,
-        //                                Ez = 0,
-        //                                Ppm = 0,
-        //                                Px = 0,
-        //                                Py = 0,
-        //                                Pz = 0,
-        //                                Da = 0,
-        //                                Df = 0
-        //                            };
-
-        //        foreach (Parameter iterParameter in allParameters.Values)
-        //        {
-        //            allParametersAuthorityList.All ().AddRange (iterParameter.AuthorityList.All ());
-        //        }
-        //    }
-        //}
-
         #region IEquatable<DatumShiftParameters> Members
 
         public bool Equals (DatumShiftParameters other)
@@ -200,15 +130,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
         }
 
         #endregion
-
-        public string Format ()
-        {
-            var nfi = new NumberFormatInfo ();
-            nfi.NumberDecimalSeparator = ".";
-            var sb = new StringBuilder ("(");
-            sb.Append (Dx.ToString (nfi)).Append (",").Append (Dy.ToString (nfi)).Append (",").Append (Dz.ToString (nfi)).Append (",").Append (Ex.ToString (nfi)).Append (",").Append (Ey.ToString (nfi)).Append (",").Append (Ez.ToString (nfi)).Append (",").Append (Ppm.ToString (nfi)).Append (")");
-            return sb.ToString ();
-        }
 
         public override bool Equals (object obj)
         {
@@ -220,7 +141,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 
         public override int GetHashCode ()
         {
-            return 0;
+            return Dx.GetHashCode () + Dy.GetHashCode () + Dz.GetHashCode () + Ex.GetHashCode () + Ey.GetHashCode () + Ez.GetHashCode () + Ppm.GetHashCode ();
+      
         }
 
         public static bool operator == (DatumShiftParameters left, DatumShiftParameters right)

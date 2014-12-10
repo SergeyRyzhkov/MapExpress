@@ -106,10 +106,12 @@
     <Compile Include="GeoAPI\Referencing\Units\ILinearUnit.cs" />
     <Compile Include="GeoAPI\Referencing\Units\IUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wms\Converters\Wm.cs" />
     <Compile Include="Wms\Metadata\BoundingBox.cs" />
     <Compile Include="Wms\Metadata\ContactAddress.cs" />
     <Compile Include="Wms\Metadata\ContactInformation.cs" />
     <Compile Include="Wms\Metadata\ContactPerson.cs" />
+    <Compile Include="Wms\Metadata\CRSAuthority.cs" />
     <Compile Include="Wms\Metadata\LatLonBoundingBox.cs" />
     <Compile Include="Wms\Metadata\LayerInfo.cs" />
     <Compile Include="Wms\Metadata\LayerStyle.cs" />
@@ -133,10 +135,10 @@
     <Compile Include="Wms\WmsException.cs" />
     <Compile Include="Wms\WmsService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Wms\Converters\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

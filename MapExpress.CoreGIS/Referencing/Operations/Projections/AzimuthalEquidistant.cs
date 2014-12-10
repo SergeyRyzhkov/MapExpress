@@ -27,7 +27,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             cosp12 = Math.Cos (MathUtil.DegToRad (Parameters.LatitudeOfOrigin));
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             double x;
             double y;
@@ -115,7 +115,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             var e = Parameters.Ellipsoid.Eccentricity;
             var temp = Parameters.SemiMinor / Parameters.SemiMajor;

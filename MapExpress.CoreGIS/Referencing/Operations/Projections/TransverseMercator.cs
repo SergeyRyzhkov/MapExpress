@@ -59,7 +59,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             m0 = MeridionalArcDistance (Parameters.Ellipsoid.Eccentricity, constants.N, constants.N2, constants.N3, constants.N4, constants.B);
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var sourcePointRad = geographCoordinate.ToRadian ();
             var ξη = CalcξAndη (Parameters.Ellipsoid.Eccentricity, MathUtil.DegToRad (Parameters.CentralMeridian), sourcePointRad.Lon, sourcePointRad.Lat, h1, h2, h3, h4);
@@ -69,7 +69,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             var η = (projectedCordinate.X - Parameters.FalseEasting) / (constants.B * k0);
             var ξ = ((projectedCordinate.Y - Parameters.FalseNorthing) + k0 * m0) / (constants.B * k0);

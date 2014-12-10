@@ -104,7 +104,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var phi0 = MathUtil.DegToRad (Parameters.LatitudeOfOrigin);
             var latRad = MathUtil.DegToRad (geographCoordinate.Lat);
@@ -219,7 +219,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (px, py);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             var phi0 = MathUtil.DegToRad (Parameters.LatitudeOfOrigin);
             var px = projectedCordinate.X - Parameters.FalseEasting;

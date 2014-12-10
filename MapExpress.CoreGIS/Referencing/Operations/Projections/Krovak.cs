@@ -68,7 +68,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             ad = s90 - uq;
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var latRad = MathUtil.DegToRad (geographCoordinate.Lat);
             var lonRad = MathUtil.DegToRad (geographCoordinate.Lon);
@@ -88,7 +88,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (px, py);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             var px = projectedCordinate.X;
             var py = projectedCordinate.Y;

@@ -12,20 +12,40 @@ namespace MapExpress.OpenGIS.Wms.Metadata
         public static MimeType ApplicationExceptionBlank = new MimeType ("application", "vnd.ogc.se_blank");
 
         // TODO:
-        //public static MimeType image/bmp</Format>
-        //public static MimeType image/jpeg</Format>
-        //<Format>image/tiff</Format>
-        //<Format>image/png</Format>
-        //<Format>image/png8</Format>
-        //<Format>image/png24</Format>
-        //<Format>image/png32</Format>
-        //<Format>image/gif</Format>
-        //<Format>image/svg+xml</Format>
+        //Для картинок использовать 
+        //  private ImageCodecInfo GetCodecInfo (string mimeType)
+        //{
+        //    foreach (ImageCodecInfo encoder in ImageCodecInfo.GetImageEncoders ())
+        //    {
+        //        if (encoder.MimeType == mimeType)
+        //            return encoder;
+        //    }
+        //    return ImageCodecInfo.GetImageDecoders ().First (c => c.FormatID == ImageFormat.Jpeg.Guid);
+        //}
 
         private MimeType (string type, string subType) : this ()
         {
             Type = type;
             SubType = subType;
+        }
+
+        public static MimeType Create (string value)
+        {
+            var result = new MimeType();
+            if (!string.IsNullOrEmpty (value))
+            {
+                var parts = value.Split ('/');
+                if (parts.Length == 2)
+                {
+                    result.Type = parts[0];
+                    result.SubType = parts[1];
+                }
+                else
+                {
+                    result.SubType = value;
+                }
+            }
+            return result;
         }
 
         [XmlIgnore]
@@ -34,6 +54,8 @@ namespace MapExpress.OpenGIS.Wms.Metadata
         [XmlIgnore]
         public string SubType { get; set; }
 
+        // TODO: Переименовать
+        // Также см.ImageCodecInfo
         [XmlText]
         public string Format
         {
@@ -41,6 +63,5 @@ namespace MapExpress.OpenGIS.Wms.Metadata
             set { }
         }
 
-        
     }
 }

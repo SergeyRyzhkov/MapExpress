@@ -36,7 +36,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             k = Math.Tan (0.5 * phic0 + Math.PI / 4) / (Math.Pow (Math.Tan (0.5 * lat0 + Math.PI / 4), c) * Srat (Parameters.Ellipsoid.Eccentricity * sphi, ratexp));
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var lon = MathUtil.DegToRad (geographCoordinate.X);
             var lat = MathUtil.DegToRad (geographCoordinate.Y);
@@ -45,7 +45,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (px, py);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             const double delTol = 1e-14;
             var lon = projectedCordinate.X / c;

@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Linq.Expressions;
 using MapExpress.CoreGIS.Referencing.Converters;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
 using MapExpress.CoreGIS.Utils;
@@ -19,7 +18,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
     public abstract class Projection : SingleCoordinateOperation, IProjection
     {
         protected const double EPSLN = 1.0e-10;
-        private Projection inverseMathTransform;
         private ProjectionParameters projParameters;
 
         protected Projection () : this (null, null, null)
@@ -38,6 +36,10 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             // InitializeAliases ();
             if (projParameters != null)
             {
+                if (projParameters.Ellipsoid == null)
+                {
+                    projParameters.Ellipsoid = sourceCRS.Datum.Ellipsoid;
+                }
                 // TODO:   сделать абстрактным вынести в SingleCoordinateOperation
                 InitializeConstants ();
             }
@@ -72,37 +74,24 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         // TODO: Но если сменили параметры, то надо флаг сбрасывать
         // TODO: Надо использовать AngularUnit у GeographicCoordinate и в зависимости от него делать или нет преобразование. А метод Project сделать чтобы всегда в радинах был, то есть ProjectRadian
 
-
-        // TODO: Может упасть, если нет откытого конструктора!
-        public override sealed IMathTransform Inverse ()
-        {
-            if (inverseMathTransform == null)
-            {
-                inverseMathTransform = (Projection) Expression.Lambda <Func <object>> (Expression.New (GetType ())).Compile () ();
-                inverseMathTransform.Parameters = Parameters;
-                inverseMathTransform.IsInverse = true;
-
-                //InitializeAliases ();
-                if (inverseMathTransform.Parameters != null)
-                {
-                    InitializeConstants ();
-                }
-            }
-            return inverseMathTransform;
-        }
-
         public override ICoordinate Transform (ICoordinate point)
         {
             InitializeConstants ();
-            return IsInverse ? ProjectInverse (point) : Project (new GeographicCoordinate (point));
+            return Project (new GeographicCoordinate (point));
+        }
+
+        public override ICoordinate TransformInverse (ICoordinate point)
+        {
+            InitializeConstants ();
+            return ProjectInverse (point);
         }
 
 
         // TODO: А ведь могут дернуть метод и не вызвав InitializeConstants. Надо сделать их protected или internal?
         // TODO: Надо сделать явно Coordinate вместо ICoordinate 
-        public abstract ICoordinate Project (GeographicCoordinate geographCoordinate);
+        protected abstract ICoordinate Project (GeographicCoordinate geographCoordinate);
 
-        public abstract GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate);
+        protected abstract GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate);
 
         public override IParameterValueGroup CreateParameters ()
         {

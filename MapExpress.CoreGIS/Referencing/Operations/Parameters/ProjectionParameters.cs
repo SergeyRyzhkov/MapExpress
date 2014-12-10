@@ -4,6 +4,7 @@
 
 #region
 
+using System;
 using MapExpress.CoreGIS.Referencing.Datums;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
@@ -12,6 +13,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 {
+    // TODO: IEquatable<ProjectionParameters>
     public class ProjectionParameters : ParameterGroup
     {
         private static ProjectionParameters allParameters;
@@ -249,7 +251,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
             }
         }
 
-
+      
         public static bool IsParamNameValid (string paramName)
         {
             return allParametersAuthorityList.Contains (paramName);

@@ -6,6 +6,7 @@ using MapExpress.CoreGIS.Referencing.Datums;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
 using MapExpress.CoreGIS.Referencing.Operations.Projections;
 using MapExpress.CoreGIS.Referencing.Registry;
+using MapExpress.OpenGIS.GeoAPI.Referencing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -25,13 +26,13 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
             var parameters = new ProjectionParameters (ellipsoid);
             var projection = new SphericalMercator (parameters);
 
-            var projectResult = projection.Project (geographicCoordinate);
+            var projectResult = projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectResult, cartesianPoint);
             Assert.AreEqual (projection.Transform (geographicCoordinate), cartesianPoint);
 
-            var reprojectResult = projection.ProjectInverse (projectResult);
+            Coordinate reprojectResult = (Coordinate) projection.TransformInverse (projectResult);
             Assert.AreEqual (reprojectResult.Round (6), geographicCoordinate.Round (6));
-            Assert.AreEqual (((GeographicCoordinate) projection.Inverse ().Transform (projectResult)).Round (6), geographicCoordinate.Round (6));
+            Assert.AreEqual (((GeographicCoordinate)projection.TransformInverse (projectResult)).Round (6), geographicCoordinate.Round (6));
         }
 
         [TestMethod]
@@ -45,10 +46,10 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
             var parameters = new ProjectionParameters (ellipsoid);
             var projection = new SphericalMercator (parameters);
 
-            var projectResult = (Coordinate) projection.Project (geographicCoordinate);
+            var projectResult = (Coordinate)projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectResult.Round (2), cartesianPoint);
 
-            var reprojectResult = projection.ProjectInverse (cartesianPoint);
+            Coordinate reprojectResult = (Coordinate) projection.TransformInverse (cartesianPoint);
             Assert.AreEqual (reprojectResult.Round (6), geographicCoordinate.Round (6));
         }
 
@@ -69,10 +70,10 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
                                  };
             var projection = new Mercator1SP (parameters);
 
-            var projectResult = (Coordinate) projection.Project (geographicCoordinate);
+            var projectResult = (Coordinate)projection.Transform (geographicCoordinate);
             Assert.AreEqual (cartesianPoint.Round (2), projectResult.Round (2));
 
-            GeographicCoordinate reprojectResult = projection.ProjectInverse (cartesianPoint);
+            Coordinate reprojectResult = (Coordinate) projection.TransformInverse (cartesianPoint);
             Assert.AreEqual (geographicCoordinate.Round (6), reprojectResult.Round (6));
         }
 
@@ -94,10 +95,10 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
                                  };
 
             var projection = new TransverseMercator (parameters);
-            var projectResult = (Coordinate) projection.Project (geographicCoordinate);
+            var projectResult = (Coordinate) projection.Transform (geographicCoordinate);
             Assert.AreEqual (new Coordinate (577274.98, 69740.49), projectResult.Round (2));
 
-            var reprojectResult = projection.ProjectInverse (cartesianPoint);
+            Coordinate reprojectResult = (Coordinate) projection.TransformInverse (cartesianPoint);
             Assert.AreEqual (geographicCoordinate.Round (4), reprojectResult.Round (4));
         }
 
@@ -119,10 +120,10 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             var projection = new TransverseMercator (parameters);
 
-            var projectedPoint = (Coordinate) projection.Project (geographicCoordinate);
+            var projectedPoint = (Coordinate) projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectedPoint.Round (2), cartesianPoint.Round (2));
 
-            var reprojectResult = projection.ProjectInverse (cartesianPoint);
+            Coordinate reprojectResult = (Coordinate) projection.TransformInverse (cartesianPoint);
             Assert.AreEqual (geographicCoordinate.Round (2), reprojectResult.Round (2));
 
 
@@ -151,7 +152,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
             var result = (Coordinate) projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -175,7 +176,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -198,7 +199,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -215,7 +216,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -232,7 +233,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -258,7 +259,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -281,7 +282,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -305,7 +306,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (result);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (result);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -330,7 +331,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (projectedCoordinate);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (projectedCoordinate);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -354,7 +355,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
             var result = (Coordinate) projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (projectedCoordinate);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (projectedCoordinate);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -378,7 +379,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
             var result = (Coordinate) projection.Transform (geographicCoordinate);
             Assert.AreEqual (projectedCoordinate.Round (2), result.Round (2));
 
-            var inverseResult = projection.ProjectInverse (projectedCoordinate);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (projectedCoordinate);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
         }
 
@@ -399,7 +400,7 @@ namespace MapExpress.Tests.Referencing.Operations.Projections
 
             var projection = new PolarStereographic (parameters);
 
-            var inverseResult = projection.ProjectInverse (projectedCoordinate);
+            Coordinate inverseResult = (Coordinate) projection.TransformInverse (projectedCoordinate);
             Assert.AreEqual (geographicCoordinate.Round (2), inverseResult.Round (2));
 
             var result = (Coordinate) projection.Transform (geographicCoordinate);

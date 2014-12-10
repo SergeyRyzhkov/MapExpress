@@ -11,6 +11,9 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 
 namespace MapExpress.CoreGIS.Geometries
 {
+    // TODO: Пересечение линий https://github.com/pgkelley4/line-segments-intersect/blob/master/js/line-segments-intersect.js
+	// http://alienryderflex.com/intersect/
+    // TODO: Методы https://developers.arcgis.com/net/store/api-reference?T_Esri_ArcGISRuntime_Geometry_GeometryEngine.htm
     public abstract class Geometry : IGeometry
     {
         private static readonly WKTGeometryReader wktGeometryReader = new WKTGeometryReader ();
@@ -103,6 +106,8 @@ namespace MapExpress.CoreGIS.Geometries
             return geojsonGeometryReader.Read (geoJSonText);
         }
 
+        
+        // TODO: А тут не интерфейсы надо использовать?
         public static bool Equals (IGeometry g1, IGeometry g2)
         {
             if (g1 == null && g2 == null)

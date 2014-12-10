@@ -21,14 +21,14 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var x = FC * MathUtil.DegToRad (geographCoordinate.X) * (1.0 - RP * Math.Abs (MathUtil.DegToRad (geographCoordinate.Y)));
             var y = FC * MathUtil.DegToRad (geographCoordinate.Y);
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double lat = projectedCordinate.Y / FC;
             double lon = projectedCordinate.X / (FC * (1.0 - RP * Math.Abs (lat)));

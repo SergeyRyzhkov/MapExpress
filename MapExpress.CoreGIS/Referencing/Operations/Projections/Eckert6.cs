@@ -23,7 +23,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var lpphi = MathUtil.DegToRad (geographCoordinate.Y);
             var lplam = MathUtil.DegToRad (geographCoordinate.X);
@@ -46,7 +46,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (Cx * lplam * (1 + Math.Cos (lpphi)), Cy * lpphi);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double xyy = projectedCordinate.Y / Cy;
             double phi = Math.Asin ((xyy + Math.Sin (xyy)) / n);

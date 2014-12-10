@@ -22,7 +22,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var latRad = MathUtil.DegToRad (geographCoordinate.Lat);
             var lonRad = MathUtil.DegToRad (geographCoordinate.Lon);
@@ -48,7 +48,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double px = projectedCordinate.X - Parameters.FalseEasting;
             double py = projectedCordinate.Y - Parameters.FalseNorthing;

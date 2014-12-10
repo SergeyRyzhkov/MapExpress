@@ -1017,7 +1017,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
                                                                     SemiMajorAxis = 6371228,
                                                                     InverseFlattening = 0
                                                                 };
-
+        // TODO: А чего их два?
         public IEllipsoid Krassovsky1940 = new Ellipsoid
                                                {
                                                    Name = "Krassovsky_1940",
@@ -1164,7 +1164,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
                                            SemiMajorAxis = 6378135,
                                            InverseFlattening = 298.26
                                        };
-
+        // TODO: Свести с WG84    
         public IEllipsoid WG1984 = new Ellipsoid
                                        {
                                            Name = "WGS_1984",

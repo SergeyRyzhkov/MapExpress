@@ -65,7 +65,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             }
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             double px = MathUtil.DegToRad (geographCoordinate.X);
             double py = MathUtil.DegToRad (geographCoordinate.Y);
@@ -114,7 +114,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (px, py);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double px = projectedCordinate.X - Parameters.FalseEasting;
             double py = projectedCordinate.Y - Parameters.FalseNorthing;

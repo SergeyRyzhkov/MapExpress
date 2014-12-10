@@ -63,7 +63,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             double dLongitude = MathUtil.DegToRad (geographCoordinate.Lon);
             double dLatitude = MathUtil.DegToRad (geographCoordinate.Lat);
@@ -94,7 +94,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         }
 
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double dLatitude;
             double rh1;

@@ -74,10 +74,7 @@ namespace MapExpress.OpenGIS.Wms
 
     public class WmsException : Exception
     {
-        public WmsException (string message) : this (message, WmsExceptionType.NotApplicable)
-        {
-        }
-
+      
         public WmsException (string message, WmsExceptionType wmsExceptionType) : base (message)
         {
             WmsExceptionType = wmsExceptionType;

@@ -6,6 +6,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 namespace MapExpress.CoreGIS.Referencing.Operations
 {
     // TODO Покрыть тестами и куда-то в другое место (нкймспейс перенести?)
+    // TODO: В геометрии базовой сделать метод для перепроицирования transform и project с соотв. аргументами
     public static class GeometryCoordinateTransform
     {
         public static IGeometry Transform (ICoordinateOperation coordinateOperation, IGeometry geometry)

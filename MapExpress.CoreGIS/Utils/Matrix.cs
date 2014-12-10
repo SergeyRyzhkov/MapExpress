@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MapExpress.CoreGIS.Utils
 {
+    //Parallel.For - убрать
     public class Matrix
     {
         private readonly double[,] innerArray;
@@ -73,6 +74,22 @@ namespace MapExpress.CoreGIS.Utils
                                                                 resultMatrix [i, j] = m1 [i, j] + m2 [i, j];
                                                             }
                                                         }
+                );
+
+
+            return resultMatrix;
+        }
+
+        public static Matrix operator - (Matrix m1, Matrix m2)
+        {
+            var resultMatrix = new Matrix (m1.RowCount, m1.ColumnCount);
+            Parallel.For (0, resultMatrix.RowCount, i =>
+            {
+                for (int j = 0; j < resultMatrix.ColumnCount; j++)
+                {
+                    resultMatrix[i, j] = m1[i, j] - m2[i, j];
+                }
+            }
                 );
 
 

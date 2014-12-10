@@ -1,4 +1,6 @@
-﻿using MapExpress.OpenGIS.Wms.Metadata;
+﻿using System;
+using System.Collections.Generic;
+using MapExpress.OpenGIS.Wms.Metadata;
 
 namespace MapExpress.OpenGIS.Wms.Operations
 {
@@ -14,9 +16,22 @@ namespace MapExpress.OpenGIS.Wms.Operations
 
         public string[] Styles { get; set; }
 
+        public CRSAuthority CRSAuthority
+        {
+            get;
+            set;
+        }
+
         #region IWmsRequest Members
 
+        public string RequestName { get; set; }
+
         public string Version { get; set; }
+
+        public bool ValidateParameters (out IList <WmsException> exceptions)
+        {
+            throw new NotImplementedException ();
+        }
 
         #endregion
     }

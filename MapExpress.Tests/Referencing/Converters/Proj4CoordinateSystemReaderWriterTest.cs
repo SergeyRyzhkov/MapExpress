@@ -18,10 +18,7 @@ namespace MapExpress.Tests.Referencing.Converters
 
             var proj4String = Proj4CoordinateSystemWriter.Instance.WriteProjectedCRS (cs);
 
-            TransverseMercator tt = new TransverseMercator();
-            tt.Inverse ();
-
-            string sdfsfd ="sdfsdf";
+            
 
         }
 

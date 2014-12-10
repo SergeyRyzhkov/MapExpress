@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="WmsHttpModule.ashx.cs" Class="MapExpress.Web.WmsHttpModule" %>

@@ -32,7 +32,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         {
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var radPoint = geographCoordinate.ToRadian ();
             var scaleFactor = CorrectScaleFactor ();
@@ -48,7 +48,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             var scaleFactor = CorrectScaleFactor ();
             var a = Parameters.Ellipsoid.Eccentricity;

@@ -10,23 +10,20 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
 {
     public class CoordinateFrameRotation : PositionVector
     {
-        public CoordinateFrameRotation (DatumShiftParameters parameters)
-            : this (null, null, parameters)
+        public CoordinateFrameRotation (DatumShiftParameters parameters): this (null, null, parameters)
         {
         }
 
-        public CoordinateFrameRotation (GeocentricCRS sourceCRS, GeocentricCRS targetCRS, DatumShiftParameters parameters)
-            : base (sourceCRS, targetCRS, parameters)
+        public CoordinateFrameRotation (GeocentricCRS sourceCRS, GeocentricCRS targetCRS, DatumShiftParameters parameters): base (sourceCRS, targetCRS, parameters)
         {
         }
 
-
-        protected override Matrix InitRotationMatrix ()
+        protected override Matrix InitRotationMatrix (bool inverse)
         {
             Parameters.Ex = Parameters.Ex * -1.0;
             Parameters.Ey = Parameters.Ey * -1.0;
             Parameters.Ez = Parameters.Ez * -1.0;
-            return base.InitRotationMatrix ();
+            return base.InitRotationMatrix (inverse);
         }
     }
 }

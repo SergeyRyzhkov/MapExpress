@@ -50,7 +50,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             rh = Parameters.SemiMajor * Math.Sqrt (c - ns0 * qs0) / ns0;
         }
 
-        public override ICoordinate Project (GeographicCoordinate geographCoordinate)
+        protected override ICoordinate Project (GeographicCoordinate geographCoordinate)
         {
             var latRad = MathUtil.DegToRad (geographCoordinate.Lat);
             var lonRad = MathUtil.DegToRad (geographCoordinate.Lon);
@@ -63,7 +63,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             return new Coordinate (x, y);
         }
 
-        public override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
+        protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
             double rh1;
             double con, lat;
