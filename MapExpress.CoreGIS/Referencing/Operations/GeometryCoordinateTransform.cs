@@ -1,15 +1,27 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations
 {
     // TODO Покрыть тестами и куда-то в другое место (нкймспейс перенести?)
     // TODO: В геометрии базовой сделать метод для перепроицирования transform и project с соотв. аргументами
-    public static class GeometryCoordinateTransform
+    // TODO:  inverse где ?
+    public class GeometryCoordinateTransform
     {
-        public static IGeometry Transform (ICoordinateOperation coordinateOperation, IGeometry geometry)
+        public GeometryCoordinateTransform ()
+        {
+            Inverse = false;
+        }
+
+        public bool Inverse { get; set; }
+
+        public  IGeometry Transform (ICoordinateOperation coordinateOperation, IGeometry geometry)
         {
             var geomType = geometry.GeometryType;
             switch (geomType)
@@ -36,13 +48,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations
         }
 
 
-        public static IPoint Transform (ICoordinateOperation coordinateOperation, IPoint point)
+        public  IPoint Transform (ICoordinateOperation coordinateOperation, IPoint point)
         {
-            return new Point (coordinateOperation.TargetCRS, coordinateOperation.MathTransform.Transform (point.X, point.Y, point.Z));
+            return Inverse ? new Point (coordinateOperation.TargetCRS, coordinateOperation.MathTransform.TransformInverse (point.X, point.Y, point.Z)) : new Point (coordinateOperation.TargetCRS, coordinateOperation.MathTransform.Transform (point.X, point.Y, point.Z));
         }
 
 
-        public static ILinearRing Transform (ICoordinateOperation coordinateOperation, ILinearRing lineString)
+        public  ILinearRing Transform (ICoordinateOperation coordinateOperation, ILinearRing lineString)
         {
             var result = new LinearRing (coordinateOperation.TargetCRS);
             foreach (var iterPoint in lineString.Vertices)
@@ -52,7 +64,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static ILineString Transform (ICoordinateOperation coordinateOperation, ILineString lineString)
+        public  ILineString Transform (ICoordinateOperation coordinateOperation, ILineString lineString)
         {
             var result = new LineString (coordinateOperation.TargetCRS);
             foreach (var iterPoint in lineString.Vertices)
@@ -62,10 +74,9 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static IPolygon Transform (ICoordinateOperation coordinateOperation, IPolygon polygon)
+        public  IPolygon Transform (ICoordinateOperation coordinateOperation, IPolygon polygon)
         {
-            var result = new Polygon (coordinateOperation.TargetCRS);
-            result.ExteriorRing = Transform (coordinateOperation, result.ExteriorRing);
+            var result = new Polygon (coordinateOperation.TargetCRS) {ExteriorRing = Transform (coordinateOperation, polygon.ExteriorRing)};
             foreach (var iterInteriorRing in polygon.InteriorRings)
             {
                 result.InteriorRings.Add (Transform (coordinateOperation, iterInteriorRing));
@@ -73,7 +84,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static IMultiPoint Transform (ICoordinateOperation coordinateOperation, IMultiPoint multiPoint)
+        public  IMultiPoint Transform (ICoordinateOperation coordinateOperation, IMultiPoint multiPoint)
         {
             var result = new MultiPoint (coordinateOperation.TargetCRS);
             foreach (var iterPoint in multiPoint.Points)
@@ -83,7 +94,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static IMultiLineString Transform (ICoordinateOperation coordinateOperation, IMultiLineString multiLineString)
+        public  IMultiLineString Transform (ICoordinateOperation coordinateOperation, IMultiLineString multiLineString)
         {
             var result = new MultiLineString (coordinateOperation.TargetCRS);
             foreach (var iterLineString in multiLineString.LineStrings)
@@ -93,7 +104,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static IMultiPolygon Transform (ICoordinateOperation coordinateOperation, IMultiPolygon multiPolygon)
+        public  IMultiPolygon Transform (ICoordinateOperation coordinateOperation, IMultiPolygon multiPolygon)
         {
             var result = new MultiPolygon (coordinateOperation.TargetCRS);
             foreach (var iterMultiPolygon in multiPolygon.Polygons)
@@ -103,7 +114,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public static IGeometryCollection Transform (ICoordinateOperation coordinateOperation, IGeometryCollection geometryCollection)
+        public  IGeometryCollection Transform (ICoordinateOperation coordinateOperation, IGeometryCollection geometryCollection)
         {
             var result = new GeometryCollection (coordinateOperation.TargetCRS);
             foreach (IGeometry iterGeom in geometryCollection.Geometries)

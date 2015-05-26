@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -110,7 +111,7 @@ namespace MapExpress.CoreGIS.Geometries.Converters
         public virtual ILineString LineString (string geomText)
         {
             var coorinates = PointCoordList (NormalizeText (geomText));
-            return new LineString (null, coorinates);
+            return new LineString (null, coorinates.Where (iter => iter.Any ()));
         }
 
         public virtual IPolygon Polygon (string geomText)
@@ -166,14 +167,23 @@ namespace MapExpress.CoreGIS.Geometries.Converters
         private IList <IList <double[]>> CurveCoordList (string str)
         {
             var coords = str.Split (new[] {curveCoordListDelimeter}, StringSplitOptions.None);
-            return coords.Select (PointCoordList).ToList ();
+            return coords.Select (PointCoordList).Where (iter=>iter.Any()).ToList ();
         }
 
         private IList <double[]> PointCoordList (string str)
         {
-            // var coords = str.Split (',');
+            var result = new List <double[]> ();
             var coords = str.Split (new[] {multiPointDelimeter}, StringSplitOptions.None);
-            return coords.Select (PointCoord).ToList ();
+            var s = coords.Select (PointCoord).ToList ();
+            result.AddRange (s);
+            foreach (var doublese in s)
+            {
+                if (double.IsNaN(doublese[0]) || double.IsNaN(doublese[1]))
+                {
+                    result.Remove (doublese);
+                }
+            }
+            return result;
         }
 
 
@@ -181,9 +191,21 @@ namespace MapExpress.CoreGIS.Geometries.Converters
         private double[] PointCoord (string str)
         {
             var result = new double[2];
-            var coordinate = ClearText (str).Split (new[] {pointCoordDelimeter}, StringSplitOptions.None);
-            double.TryParse (ClearText (coordinate [0]), NumberStyles.Any, CultureInfo.InvariantCulture, out result [0]);
-            double.TryParse (ClearText (coordinate [1]), NumberStyles.Any, CultureInfo.InvariantCulture, out result [1]);
+            result[0] = double.NaN;
+            result[1] = double.NaN;
+            
+            var coordinate = ClearText (str).Split (new[] { pointCoordDelimeter }, StringSplitOptions.None);
+            if (coordinate.Length == 2)
+            {
+                if (!double.TryParse (ClearText (coordinate[0]), NumberStyles.Any, CultureInfo.InvariantCulture, out result[0]))
+                {
+                    result[0] = double.NaN;
+                }
+                if (!double.TryParse (ClearText (coordinate[1]), NumberStyles.Any, CultureInfo.InvariantCulture, out result[1]))
+                {
+                    result[1] = double.NaN;
+                }
+            }
             return result;
         }
 

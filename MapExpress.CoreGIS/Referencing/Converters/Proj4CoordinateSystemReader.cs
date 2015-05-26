@@ -68,18 +68,20 @@ namespace MapExpress.CoreGIS.Referencing.Converters
 
         public IProjectedCRS ReadProjectedCRS (string proj4String)
         {
+            string projectionName;
             var parameters = PopulateParameters (proj4String);
-            var projection = ReadProjection (parameters);
+            var projection = ReadProjection (parameters, out projectionName);
             var datum = ReadDatum (parameters);
             var geogrCS = new CoordinateReferenceSystemFactory ().CreateGeographicCRS (string.Empty, datum);
-            var projectedCRS = new CoordinateReferenceSystemFactory ().CreateProjectedCRS (string.Empty, geogrCS, projection);
+            var projectedCRS = new CoordinateReferenceSystemFactory ().CreateProjectedCRS (projectionName, geogrCS, projection);
             return projectedCRS;
         }
 
         public IProjection ReadProjection (string proj4String)
         {
+            string projectionName;
             var parameters = PopulateParameters (proj4String);
-            return ReadProjection (parameters);
+            return ReadProjection (parameters, out projectionName);
         }
 
         public IGeodeticDatum ReadDatum (string proj4String)
@@ -126,18 +128,22 @@ namespace MapExpress.CoreGIS.Referencing.Converters
 
         #endregion
 
-        private static IProjection ReadProjection (IDictionary <string, string> parameters)
+        private static IProjection ReadProjection (IDictionary <string, string> parameters, out string projectionName)
         {
-            string projName;
             Projection projection = null;
 
-            if (parameters.TryGetValue (Proj4Keyword.proj, out projName))
+            if (parameters.TryGetValue (Proj4Keyword.proj, out projectionName))
             {
-                projection = ProjectionRegistry.Instance.GetByAuthority (AuthorityType.PROJ4, projName);
+                projection = ProjectionRegistry.Instance.GetByAuthority (AuthorityType.PROJ4, projectionName);
+                var tryEpsgName = projection.AuthorityAliases.FindFirstNameByAuthority (AuthorityType.EPSG);
+                if (!string.IsNullOrEmpty (tryEpsgName))
+                {
+                    projectionName = tryEpsgName;
+                }
             }
             if (projection == null)
             {
-                throw new MapExpressException ("Unsupported projection: " + projName);
+                throw new MapExpressException ("Unsupported projection: " + projectionName);
             }
 
             var projectionParameters = new ProjectionParameters ();
@@ -233,9 +239,6 @@ namespace MapExpress.CoreGIS.Referencing.Converters
             var ellipsoid = ReadEllipsoid (parameters);
             projectionParameters.Ellipsoid = ellipsoid;
 
-            projection.InitializeConstants ();
-
-            //projection.InitializeAliases ();
 
             return projection;
         }
@@ -270,18 +273,18 @@ namespace MapExpress.CoreGIS.Referencing.Converters
             {
                 double dx = 0, dy = 0, dz = 0, rx = 0, ry = 0, rz = 0, ds = 0;
                 var towgs84Params = towgs84.Split (',');
-                if (towgs84Params.Length == 3)
+                if (towgs84Params.Length >= 3)
                 {
-                    double.TryParse (towgs84Params [0], out dx);
-                    double.TryParse (towgs84Params [1], out dy);
-                    double.TryParse (towgs84Params [2], out dz);
+                    dx = double.Parse (towgs84Params[0], CultureInfo.InvariantCulture);
+                    dy = double.Parse (towgs84Params [1],  CultureInfo.InvariantCulture);
+                    dz = double.Parse (towgs84Params [2],  CultureInfo.InvariantCulture);
                 }
-                if (towgs84Params.Length == 7)
+                if (towgs84Params.Length >= 7)
                 {
-                    double.TryParse (towgs84Params [3], out rx);
-                    double.TryParse (towgs84Params [4], out ry);
-                    double.TryParse (towgs84Params [5], out rz);
-                    double.TryParse (towgs84Params [6], out ds);
+                    rx = double.Parse (towgs84Params[3], CultureInfo.InvariantCulture);
+                    ry = double.Parse (towgs84Params[4], CultureInfo.InvariantCulture);
+                    rz = double.Parse (towgs84Params[5], CultureInfo.InvariantCulture);
+                    ds = double.Parse (towgs84Params[6], CultureInfo.InvariantCulture);
                 }
                 datum.ToWGS84 = new DatumShiftParameters (dx, dy, dz, rx, ry, rz, ds);
             }

@@ -1,23 +1,16 @@
-﻿using System.Drawing.Imaging;
-using MapExpress.OpenGIS.Wms.Metadata;
-
-namespace MapExpress.OpenGIS.Wms.Operations
+﻿namespace MapExpress.OpenGIS.Wms.Operations
 {
-    // Можен назвать все классы GetMapResponse итд
     public struct MapResponse : IWmsResponse
     {
-        public MapResponse (byte[] mapImage, ImageCodecInfo imageCodecInfo): this ()
+        public MapResponse (byte[] mapImage, string format)
+            : this ()
         {
-            MapImage = mapImage;
-            MimeType = imageCodecInfo;
+            Image = mapImage;
+            Format = format;
         }
 
-        public byte[] MapImage { get; set; }
+        public byte[] Image { get; set; }
 
-        public ImageCodecInfo MimeType
-        {
-            get;
-            set;
-        }
+        public string Format { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 
 #endregion
-
+// TODO :папку переименовать в датумС
 namespace MapExpress.OpenGIS.GeoAPI.Referencing.Datum
 {
     public interface IDatum : IEquatable <IDatum>, IAuthorityObject

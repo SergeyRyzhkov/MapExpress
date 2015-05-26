@@ -2,9 +2,9 @@
 
 namespace MapExpress.OpenGIS.Wms.Operations
 {
-    public struct FeatureInfoResponse
+    public struct FeatureInfoResponse : IWmsResponse
     {
-        public MimeType MimeType { get; set; }
+        public string Format { get; set; }
 
         public string FeatureInformation { get; set; }
     }

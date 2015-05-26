@@ -6,7 +6,12 @@ namespace MapExpress.OpenGIS.Wms.Operations
 {
     public struct MetadataRequest : IWmsRequest
     {
-        public MimeType Format { get; set; }
+        public MetadataRequest (string version = "1.3.0"): this ()
+        {
+            Version = version;
+        }
+
+        public string Format { get; set; }
 
         public string UpdateSequence { get; set; }
 
@@ -14,8 +19,13 @@ namespace MapExpress.OpenGIS.Wms.Operations
 
         #region IWmsRequest Members
 
-        public string RequestName { get; set; }
-
+        public string RequestName
+        {
+            get
+            {
+                return "GetCapabilities";
+            }
+        }
 
         public string Version { get; set; }
 

@@ -40,6 +40,7 @@ namespace MapExpress.Tests.Referencing.Operations.Transformations
             var transformer = new CoordinateFrameRotation (parameters);
 
             Assert.AreEqual (transformer.Transform (sourcePoint), targetPoint);
+
             var invPoint = (Coordinate) transformer.TransformInverse (targetPoint);
             Assert.AreEqual (invPoint.Round (2), sourcePoint.Round (2));
         }
@@ -53,6 +54,8 @@ namespace MapExpress.Tests.Referencing.Operations.Transformations
             var transformer = new MolodenskyBadekas (parameter);
 
             Assert.AreEqual (transformer.Transform (sourcePoint), targetPoint);
+
+            Assert.AreEqual (transformer.TransformInverse (targetPoint), sourcePoint);
         }
 
 
@@ -156,7 +159,7 @@ namespace MapExpress.Tests.Referencing.Operations.Transformations
             var sk4284Lon = 30.235928834504723;
             var sk4284Lat = 59.956824272975773;
 
-            // ГОСТ 2008 WGS84 -> СК42
+            // ГОСТ 2008 WGS84 -> СК42 инвертированные !!!
            var fromSk42ToWGS84Parameters = new DatumShiftParameters
                                                 {
                                                     Dx = -23.57,

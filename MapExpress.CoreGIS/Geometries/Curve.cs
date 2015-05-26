@@ -7,6 +7,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 
 namespace MapExpress.CoreGIS.Geometries
 {
+    // А почему абстракт?
     public abstract class Curve : Geometry, ICurve
     {
         protected Curve (ICoordinateReferenceSystem coordSys) : base (coordSys)

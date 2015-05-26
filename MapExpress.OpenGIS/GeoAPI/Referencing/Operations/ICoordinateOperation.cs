@@ -20,8 +20,10 @@ namespace MapExpress.OpenGIS.GeoAPI.Referencing.Operations
 
         IMathTransform MathTransform { get; }
 
+        
         IOperationMethod OperationMethod { get; }
 
+        // TODO: Убрать бы все эти апарметры и т.д. Толку от них нет 
         IParameterValueGroup Parameters { get; }
     }
 }

@@ -92,13 +92,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             else
             {
                 var qs = (c - con * con) / ns0;
-                lat = phi1z (e3, qs);
+                lat = Phi1Z (e3, qs);
             }
             var lon = AdjustLon (theta / ns0 + MathUtil.DegToRad (Parameters.CentralMeridian));
             return new GeographicCoordinate (MathUtil.Rad2Deg (lon), MathUtil.Rad2Deg (lat));
         }
 
-        private double phi1z (double eccent, double qs)
+        private static double Phi1Z (double eccent, double qs)
         {
             var phi = Asinz (0.5 * qs);
             if (eccent < EPSLN)

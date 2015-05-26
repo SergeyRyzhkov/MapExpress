@@ -7,7 +7,6 @@ namespace MapExpress.OpenGIS.Wms.Operations
         string RequestName
         {
             get;
-            set;
         }
 
         string Version { get; set; }

@@ -1,12 +1,37 @@
-﻿namespace MapExpress.OpenGIS.Wms.Metadata
+﻿#region
+
+using System;
+using System.ComponentModel;
+
+#endregion
+
+namespace MapExpress.OpenGIS.Wms.Metadata
 {
+    [TypeConverter (typeof (ExpandableObjectConverter))]
+    [Serializable]
     public struct ContactAddress
     {
-        public string Address;
-        public string AddressType;
-        public string City;
-        public string Country;
-        public string PostCode;
-        public string StateOrProvince;
+        [DisplayName ("Тип адреса")]
+        public string AddressType { get; set; }
+
+        [DisplayName ("Адрес")]
+        public string Address { get; set; }
+
+        [DisplayName ("Индекс")]
+        public string PostCode { get; set; }
+
+        [DisplayName ("Страна")]
+        public string Country { get; set; }
+
+        [DisplayName ("Город")]
+        public string City { get; set; }
+
+        [DisplayName ("StateOrProvince")]
+        public string StateOrProvince { get; set; }
+
+        public override string ToString ()
+        {
+            return Address;
+        }
     }
 }

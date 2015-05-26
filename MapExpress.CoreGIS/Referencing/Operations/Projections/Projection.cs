@@ -13,8 +13,13 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
-    // TODO: ToWKT, TOPROJ4
-    // TODO : Equals
+    // TODO: Проверить результаты
+	// http://geographiclib.sourceforge.net/html/index.html
+	
+	// TODO: ToWKT, TOPROJ4
+    // TODO: Equals
+    // TODO: proj.ImportFromEPSG(4326)
+    // TODO: proj.ImportFromWkt, proj4
     public abstract class Projection : SingleCoordinateOperation, IProjection
     {
         protected const double EPSLN = 1.0e-10;
@@ -63,6 +68,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 
         #region IProjection Members
 
+		// TODO: А это вообще где-то нужно? Если да, то найти где и использовать только, например в интерфейсе проекции.
         public override string ExportToWKT ()
         {
             return WKTCoordinateSystemWriter.Instance.WriteProjection (this);

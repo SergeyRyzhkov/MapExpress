@@ -59,9 +59,9 @@ namespace MapExpress.CoreGIS.Geometries
             return box;
         }
 
-        public Envelope Grow (double amountInX, double amountInY)
+        public BoundingBox Grow (double amountInX, double amountInY)
         {
-            var box = (Envelope) Clone ();
+            var box = (BoundingBox)Clone ();
             box.BottomLeft.X -= amountInX;
             box.BottomLeft.Y -= amountInY;
             box.TopRight.X += amountInX;

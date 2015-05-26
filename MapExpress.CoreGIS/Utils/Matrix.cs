@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 // TODO: В отдельную сборку все утилиты
 
+Все утили в nRsn.Core.Util и убрать здесь
+
 namespace MapExpress.CoreGIS.Utils
 {
     //Parallel.For - убрать

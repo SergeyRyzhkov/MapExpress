@@ -1,32 +1,29 @@
-﻿using System.Xml.Serialization;
+﻿#region
+
+using System;
+using System.Xml.Serialization;
+
+#endregion
 
 namespace MapExpress.OpenGIS.Wms.Metadata
 {
-    public class OnlineResource
+    [Serializable]
+    public struct OnlineResource
     {
-        private string onlineResourceType;
-
-        public OnlineResource ()
-        {
-        }
-
-        public OnlineResource (string url)
+        public OnlineResource (string url) : this ()
         {
             URL = url;
         }
 
-        public OnlineResource (string onlineResourceType, string url)
+        public OnlineResource (string onlineResourceType, string url) : this ()
         {
-            this.onlineResourceType = onlineResourceType;
+            OnlineResourceType = onlineResourceType;
             URL = url;
         }
 
         [XmlAttribute (Namespace = "http://www.w3.org/1999/xlink", AttributeName = "type")]
-        public string OnlineResourceType
-        {
-            get { return onlineResourceType ?? "simple"; }
-            set { onlineResourceType = value; }
-        }
+        public string OnlineResourceType { get; set; }
+
 
         [XmlAttribute (Namespace = "http://www.w3.org/1999/xlink", AttributeName = "href")]
         public string URL { get; set; }

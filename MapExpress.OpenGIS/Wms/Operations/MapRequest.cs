@@ -1,30 +1,43 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using MapExpress.OpenGIS.Wms.Metadata;
 
+#endregion
+
 namespace MapExpress.OpenGIS.Wms.Operations
 {
-    public struct MapRequest : IWmsRequest
+// TODO: Надо как в строке GetMap ит.д.
+
+    public class MapRequest : IWmsRequest
     {
-        public BoundingBox BoundingBox { get; set; }
+        public MapRequest (string version = "1.3.0")
+        {
+            Layers = new List <string> ();
+            Styles = new List <string> ();
+            MapAttributes = new MapAttributes ();
+            Version = version;
+        }
 
-        public MimeType ExceptionFormat { get; set; }
 
-        public string[] Layers { get; set; }
+        public WmsBoundingBox BoundingBox { get; set; }
+
+        public string ExceptionFormat { get; set; }
+
+        public List <string> Layers { get; set; }
 
         public MapAttributes MapAttributes { get; set; }
 
-        public string[] Styles { get; set; }
+        public List <string> Styles { get; set; }
 
-        public CRSAuthority CRSAuthority
+        public string CRS { get; set; }
+
+
+        public virtual string RequestName
         {
-            get;
-            set;
+            get { return "GetMap"; }
         }
-
-        #region IWmsRequest Members
-
-        public string RequestName { get; set; }
 
         public string Version { get; set; }
 
@@ -32,7 +45,5 @@ namespace MapExpress.OpenGIS.Wms.Operations
         {
             throw new NotImplementedException ();
         }
-
-        #endregion
     }
 }

@@ -8,6 +8,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 
 namespace MapExpress.OpenGIS.GeoAPI.Referencing.Operations
 {
+	// TODO: реализовано?
     public interface ICoordinateOperationFactory
     {
         ICoordinateOperation CreateOperation (ICoordinateReferenceSystem sourceCRS, ICoordinateReferenceSystem targetCRS);

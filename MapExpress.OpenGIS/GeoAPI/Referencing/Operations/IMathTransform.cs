@@ -19,6 +19,8 @@ namespace MapExpress.OpenGIS.GeoAPI.Referencing.Operations
 
         ICoordinate Transform (ICoordinate point);
 
+		// TODO: Foward и Inverse ? - да
+
         ICollection <ICoordinate> Transform (ICollection <ICoordinate> points);
 
         double[] TransformInverse (double x, double y, double z);

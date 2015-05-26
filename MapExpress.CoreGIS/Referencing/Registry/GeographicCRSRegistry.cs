@@ -2808,24 +2808,6 @@ namespace MapExpress.CoreGIS.Referencing.Registry
         }
 
 
-        public override void Register (IGeographicCRS authorityObject)
-        {
-            IGeographicCRS first = null;
-            foreach (var iter in All)
-            {
-                if (iter.AuthorityAliases.All () [0].Code == authorityObject.AuthorityAliases.All () [0].Code)
-                {
-                    first = iter;
-                    break;
-                }
-            }
-            if (first == null)
-            {
-                All.Add (authorityObject);
-                first = authorityObject;
-            }
-
-            first.AuthorityAliases.AddRange (authorityObject.AuthorityAliases.All ());
-        }
+       
     }
 }

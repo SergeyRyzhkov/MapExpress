@@ -429,7 +429,11 @@ namespace MapExpress.CoreGIS.Referencing.Converters
             tokenizer.ReadToken ("[");
             var projectionName = tokenizer.ReadDoubleQuotedWord ();
 
-            Projection projection = ProjectionRegistry.Instance.GetByAuthority (AuthorityType.EPSG, projectionName);
+            var projection = ProjectionRegistry.Instance.GetByAuthority (AuthorityType.EPSG, projectionName);
+            if (projection == null)
+            {
+                projection = ProjectionRegistry.Instance.GetFirstByAuthorityName (projectionName);
+            }
             if (projection == null)
             {
                 throw new MapExpressException ("Unsupported projection: " + projectionName);

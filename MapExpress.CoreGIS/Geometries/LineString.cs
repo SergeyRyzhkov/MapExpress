@@ -55,6 +55,8 @@ namespace MapExpress.CoreGIS.Geometries
             get { return vertices [index]; }
         }
 
+        // TODO: Проверять на наличее нач. и кон. точек. 
+        // А точно второй и третий аргумент  var bbox = new BoundingBox (StartPoint.X, StartPoint.Y, StartPoint.X, StartPoint.Y); StartPoint ?
         public override BoundingBox Bounds
         {
             get
@@ -99,12 +101,39 @@ namespace MapExpress.CoreGIS.Geometries
         public override IPoint StartPoint
         {
             get { return vertices.First (); }
+            set
+            {
+                if (!vertices.Any ())
+                {
+                    vertices.Add (value);
+                }
+                else
+                    vertices [0] = value;
+            }
         }
 
 
         public override IPoint EndPoint
         {
             get { return vertices.Last (); }
+            set
+            {
+                if (!vertices.Any())
+                {
+                    vertices.Add (value);
+                }
+                else
+                {
+                    var pointsCount = vertices.Count;
+                    if (pointsCount == 1)
+                    {
+                        vertices.Add (value);
+                    }else
+                    {
+                        vertices[vertices.Count - 1] = value;
+                    }
+                }
+            }
         }
 
         public override bool IsRing

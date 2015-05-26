@@ -15,7 +15,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
     // TODO: В потомках оптимизировать и использовать InitializeConstants 
     public class PositionVector : SingleCoordinateOperation, ITransformation
     {
-        public PositionVector (DatumShiftParameters parameters) : this (null, null, parameters)
+        public PositionVector (DatumShiftParameters parameters)
+            : this (null, null, parameters)
         {
         }
 
@@ -109,6 +110,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             return matrix;
         }
 
+        // TODO: bool inverse нужен?
         protected virtual Matrix InitFrameRotationMatrix ()
         {
             var matrix = new Matrix (3);

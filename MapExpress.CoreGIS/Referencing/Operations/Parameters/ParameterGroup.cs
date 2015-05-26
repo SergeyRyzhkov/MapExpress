@@ -7,6 +7,8 @@ using MapExpress.OpenGIS.GeoAPI.Parameters;
 
 #endregion
 
+Убрать все эти навороты с параметрами. Сделать стандартными для
+
 namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 {
     public class ParameterGroup : IParameterValueGroup

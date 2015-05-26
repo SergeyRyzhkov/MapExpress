@@ -55,6 +55,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations
         // TODO: Надо оптимизировать много объектов создается. Этот методот надо реализовать в потомках, а не ICoordinate Transform (ICoordinate point);
         public abstract ICoordinate Transform (ICoordinate point);
 
+        public abstract ICoordinate TransformInverse (ICoordinate point);
+
         // TODO: Parallel.For ?
         public virtual ICollection <ICoordinate> Transform (ICollection <ICoordinate> points)
         {
@@ -71,10 +73,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             var coordinate = TransformInverse (new Coordinate (x, y, z));
             return new[] {coordinate.X, coordinate.Y, coordinate.Z};
         }
-
-
-        public abstract ICoordinate TransformInverse (ICoordinate point);
-
 
         public ICollection <ICoordinate> TransformInverse (ICollection <ICoordinate> points)
         {

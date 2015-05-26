@@ -113,6 +113,8 @@ namespace MapExpress.Tests.Referencing.Converters
         }
 
         // TODO: Дореализовать! И проверить для ESRI - //http://epsg.io/3857 Там параметр особый
+		// TODO: Проверить такую http://geocnt.geonet.ru/projections/query_proj.php?proj=1
+		
         [TestMethod]
         public void ReadProjectedCRSTest ()
         {
@@ -163,11 +165,15 @@ namespace MapExpress.Tests.Referencing.Converters
             var res1 = WKTCoordinateSystemReader.Instance.ReadProjection (prj);
 
             var proj4 = "+proj=tmerc +lat_0=0 +lon_0=30 +k=1 +x_0=95942.17 +y_0=-6552810 +ellps=krass +towgs84=23.92,-141.27,-80.9,-0,0.35,0.82,-0.12 +units=m +no_defs";
-         
-      
         }
 
+        [TestMethod]
+        public void ReadProjectedTest ()
+        {
+            var wkt = "PROJCS[\"Transverse Mercator\",GEOGCS[\"\",DATUM[\"\",SPHEROID[\"Krassowsky 1940\",6378245,298.3],TOWGS84[23.57,-140.95,-79.8,0,0.35,0.79,-0.22]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433],AXIS[\"Geodetic latitude\",NORTH],AXIS[\"Geodetic longitude\",EAST]],PROJECTION[\"Transverse Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"central_meridian\",30],PARAMETER[\"longitude_of_center\",30],PARAMETER[\"false_easting\",95942.17],PARAMETER[\"false_northing\",-6552810],PARAMETER[\"scale_factor\",1],PARAMETER[\"semi_major\",6378245],PARAMETER[\"semi_minor\",6356863.01877305],UNIT[\"metre\",1]]";
+            var crs = WKTCoordinateSystemReader.Instance.ReadCoordinateSystem (wkt);
 
+        }
         
     }
 }

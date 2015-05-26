@@ -11,7 +11,7 @@ namespace MapExpress.CoreGIS.Geometries
 {
     public class Envelope : Geometry, IEnvelope
     {
-        public Envelope () : this (null)
+        public Envelope (ICoordinateReferenceSystem coordSys) : this (coordSys, new Point (), new Point ())
         {
         }
 
@@ -25,9 +25,6 @@ namespace MapExpress.CoreGIS.Geometries
         {
         }
 
-        public Envelope (IEnvelope envelope) : this (envelope.SpatialReferenceSystem, envelope.BottomLeft, envelope.TopRight)
-        {
-        }
 
         public Envelope (ICoordinateReferenceSystem coordSys, double minX, double minY, double maxX, double maxY) : this (coordSys, new Point (coordSys, minX, minY), new Point (coordSys, maxX, maxY))
         {
@@ -139,6 +136,18 @@ namespace MapExpress.CoreGIS.Geometries
                                                    Math.Max (TopRight.Y, envelope.TopRight.Y)));
         }
 
+        public Polygon ToPolygon ()
+        {
+            var result = new Polygon (SpatialReferenceSystem);
+            var ext = new LinearRing (SpatialReferenceSystem);
+            ext.Vertices.Add (BottomLeft);
+            ext.Vertices.Add (TopLeft);
+            ext.Vertices.Add (TopRight);
+            ext.Vertices.Add (BottomRight);
+            ext.Vertices.Add (BottomLeft);
+            result.ExteriorRing = ext;
+            return result;
+        }
 
         public bool Equals (Envelope other)
         {

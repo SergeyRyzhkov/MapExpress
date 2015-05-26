@@ -4,11 +4,14 @@ using MapExpress.CoreGIS.Referencing.Operations.Projections;
 namespace MapExpress.CoreGIS.Referencing.Registry
 {
     // TODO: Регистри и в соотв. папку
+    // TODO :а где SphericalMercator?
+	
+	вынести в отдельный проект? Оставить торлько интерфейсы?
+
     public class ProjectionRegistry : AuthorityObjectRegistry <Projection>
     {
         private static readonly List <Projection> projections = new List <Projection> ();
         private static ProjectionRegistry instance;
-
         public AlbersConicEqualArea AlbersConicEqualArea = new AlbersConicEqualArea (null);
         public AzimuthalEquidistant AzimuthalEquidistant = new AzimuthalEquidistant (null);
         public CassiniSoldner CassiniSoldner = new CassiniSoldner (null);

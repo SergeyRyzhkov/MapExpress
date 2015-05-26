@@ -11,6 +11,8 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 
 namespace MapExpress.CoreGIS.Geometries
 {
+	// TODO: Может везде (где используется экспорт\импорт, в системах координат, проекциях ит.д.) переименовать методы CreateFromWKT на FromWKT и ExportToGeoJSON на ToGeoJSON и т.д.
+	
     // TODO: Пересечение линий https://github.com/pgkelley4/line-segments-intersect/blob/master/js/line-segments-intersect.js
 	// http://alienryderflex.com/intersect/
     // TODO: Методы https://developers.arcgis.com/net/store/api-reference?T_Esri_ArcGISRuntime_Geometry_GeometryEngine.htm
@@ -20,6 +22,7 @@ namespace MapExpress.CoreGIS.Geometries
         private static readonly WKTGeometryWriter wktGeometryWriter = new WKTGeometryWriter ();
         private static readonly GeoJSONGeometryReader geojsonGeometryReader = new GeoJSONGeometryReader ();
         private static readonly GeoJSONGeometryWriter geojsonGeometryWriter = new GeoJSONGeometryWriter ();
+        private GeometryCoordinateTransform geometryCoordinateTransform = new GeometryCoordinateTransform ();
 
         protected Geometry () : this (null)
         {
@@ -43,6 +46,7 @@ namespace MapExpress.CoreGIS.Geometries
 
         public ICoordinateReferenceSystem SpatialReferenceSystem { get; set; }
 
+        // TODO: Надо уточнить по всем геометриям!
         public virtual int Dimension
         {
             get { return 1; }
@@ -77,19 +81,17 @@ namespace MapExpress.CoreGIS.Geometries
 
         public IGeometry TransformCoordinate (ICoordinateOperation coordinateOperation)
         {
-            return GeometryCoordinateTransform.Transform (coordinateOperation, this);
+            geometryCoordinateTransform.Inverse = false;
+            return geometryCoordinateTransform.Transform (coordinateOperation, this);
         }
 
-        public override bool Equals (object obj)
+        public IGeometry TransformInverseCoordinate (ICoordinateOperation coordinateOperation)
         {
-            if (ReferenceEquals (null, obj))
-                return false;
-            if (ReferenceEquals (this, obj))
-                return true;
-            if (!(obj is Geometry))
-                return false;
-            return Equals (obj as Geometry);
+            geometryCoordinateTransform.Inverse = true;
+            return geometryCoordinateTransform.Transform (coordinateOperation, this);
         }
+
+        
 
         public override string ToString ()
         {
@@ -108,6 +110,7 @@ namespace MapExpress.CoreGIS.Geometries
 
         
         // TODO: А тут не интерфейсы надо использовать?
+        // И вообще это в реляц.операторы
         public static bool Equals (IGeometry g1, IGeometry g2)
         {
             if (g1 == null && g2 == null)

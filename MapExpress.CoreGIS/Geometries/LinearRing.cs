@@ -39,6 +39,9 @@ namespace MapExpress.CoreGIS.Geometries
             get { return GeometryType.LineString; }
         }
 
+//  TODO:      Где-то есть в using NetTopologySuite.Algorithm;
+//using NetTopologySuite.Geometries;
+//        LinearRing outerRing = CGAlgorithms.IsCCW
         public bool IsCounterClockwise
         {
             get

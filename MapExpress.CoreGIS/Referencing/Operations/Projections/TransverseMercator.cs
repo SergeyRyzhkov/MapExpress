@@ -25,10 +25,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         // TODO:UTM сделать отдельной проекцие. В параметр зону. Потом убрать сдесь алиас.  
         public TransverseMercator ()
         {
+            Name = "Transverse Mercator";
         }
+
 
         public TransverseMercator (ProjectionParameters parameters) : base (parameters)
         {
+            Name = "Transverse Mercator";
         }
 
         public TransverseMercator (IGeographicCRS sourceCRS, IProjectedCRS targetCRS, ProjectionParameters parameters) : base (sourceCRS, targetCRS, parameters)

@@ -30,6 +30,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,6 +53,7 @@
     <Compile Include="Geometries\BoundingBox.cs" />
     <Compile Include="Geometries\Converters\GeoJSONGeometryReader.cs" />
     <Compile Include="Geometries\Converters\GeoJSONGeometryWriter.cs" />
+    <Compile Include="Geometries\Converters\KMLWriter.cs" />
     <Compile Include="Geometries\Converters\TextGeometryReader.cs" />
     <Compile Include="Geometries\Converters\TextGeometryWriter.cs" />
     <Compile Include="Geometries\Converters\WKBGeometryReader.cs" />
@@ -166,19 +178,12 @@
     <Compile Include="Utils\BigEndianBitConverter.cs" />
     <Compile Include="Utils\ByteOrderType.cs" />
     <Compile Include="Utils\ByteUtils.cs" />
-    <Compile Include="Utils\Json\FastJsonParser.cs" />
-    <Compile Include="Utils\Json\IJsonWrapper.cs" />
-    <Compile Include="Utils\Json\JsonData.cs" />
-    <Compile Include="Utils\Json\JsonException.cs" />
-    <Compile Include="Utils\Json\JsonMapper.cs" />
-    <Compile Include="Utils\Json\JsonMockWrapper.cs" />
-    <Compile Include="Utils\Json\JsonReader.cs" />
-    <Compile Include="Utils\Json\JsonWriter.cs" />
-    <Compile Include="Utils\Json\Lexer.cs" />
-    <Compile Include="Utils\Json\ParserToken.cs" />
     <Compile Include="Utils\MathUtil.cs" />
     <Compile Include="Utils\Matrix.cs" />
     <Compile Include="Utils\StreamTokenizer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\Json\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MapExpress.OpenGIS\MapExpress.OpenGIS.csproj">

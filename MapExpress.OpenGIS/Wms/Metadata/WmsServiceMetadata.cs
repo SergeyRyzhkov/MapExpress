@@ -1,15 +1,14 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace MapExpress.OpenGIS.Wms.Metadata
 {
-    [XmlRoot (ElementName = "WMS_Capabilities")]
-    public class WmsServiceMetadata
+    [Serializable]
+    [XmlRoot (ElementName = "WMS_Capabilities", Namespace = "http://www.opengis.net/wms")]
+    public struct WmsServiceMetadata
     {
-        public WmsServiceMetadata () : this (null, null)
-        {
-        }
-
-        public WmsServiceMetadata (ServiceDescription serviceDescription, ServiceCapability serviceCapability)
+        
+        public WmsServiceMetadata (ServiceDescription serviceDescription, ServiceCapability serviceCapability) : this ()
         {
             ServiceDescription = serviceDescription;
             ServiceCapability = serviceCapability;

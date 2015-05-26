@@ -6,6 +6,7 @@ namespace MapExpress.Tests.Geometries.Converters
     [TestClass]
     public class GeoJSONGeometryWriterTest
     {
+		// TODO: Надо проверить с дробной частью !!!
         [TestMethod]
         public void ExportPoint ()
         {
@@ -131,7 +132,7 @@ namespace MapExpress.Tests.Geometries.Converters
         }
 
         [TestMethod]
-        public void ExportGeometryCollectionToWKT ()
+        public void ExportGeometryCollection ()
         {
             var point = new Point (null, 4, 6);
 

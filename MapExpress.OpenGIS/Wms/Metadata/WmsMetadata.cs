@@ -1,6 +1,9 @@
-﻿namespace MapExpress.OpenGIS.Wms.Metadata
+﻿using System;
+
+namespace MapExpress.OpenGIS.Wms.Metadata
 {
-    public struct Metadata
+    [Serializable]
+    public struct WmsMetadata
     {
         public string MetadataFormat;
         public string MetadataURL;

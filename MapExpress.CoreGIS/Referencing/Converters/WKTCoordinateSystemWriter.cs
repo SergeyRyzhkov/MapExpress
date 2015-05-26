@@ -18,9 +18,11 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Units;
 
 namespace MapExpress.CoreGIS.Referencing.Converters
 {
-    // TODO: Наименования надо брать из алиасов, в зависомсти от AuthorityType
+    // TODO: !!!!! Наименования надо брать из алиасов, в зависомсти от AuthorityType
     // TODO: Для Kroval сделать параметры по умолчанию. Они пробиты в коде
     // http://www.geotoolkit.org/apidocs/org/geotoolkit/referencing/operation/provider/Krovak.html
+
+    
 
     public class WKTCoordinateSystemWriter : ICoordinateSystemWriter
     {

@@ -30,11 +30,13 @@ namespace MapExpress.CoreGIS.Geometries.Converters
             nfi.NumberDecimalSeparator = ".";
         }
 
+        // TODO: Нет работы с Envelope
         // TODO:Переделать на типы  как в public static class WKBGeometryWriter + добавиь Write или все методы WRITE сделать и сделать приватными
         public virtual string Write (IGeometry geometry)
         {
             if (geometry is IPoint)
             {
+				// TODO: Что-то косячет если координаты с дробной частью
                 return Point ((IPoint) geometry);
             }
             if (geometry is IMultiPoint)

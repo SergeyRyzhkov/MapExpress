@@ -41,6 +41,11 @@ namespace MapExpress.OpenGIS.GeoAPI.Authority
         }
 
 
+        public Authority FindFirstByName (string name)
+        {
+            return authorityAliases.FirstOrDefault (iter => iter.Name.Equals (name, StringComparison.InvariantCultureIgnoreCase));
+        }
+
         public List <Authority> FindAllByName (string name)
         {
             return authorityAliases.Where (iterAlias => string.Equals (iterAlias.Name, name, StringComparison.InvariantCultureIgnoreCase)).ToList ();

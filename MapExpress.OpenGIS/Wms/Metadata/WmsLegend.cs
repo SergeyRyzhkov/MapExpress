@@ -1,8 +1,11 @@
-﻿namespace MapExpress.OpenGIS.Wms.Metadata
+﻿using System;
+
+namespace MapExpress.OpenGIS.Wms.Metadata
 {
-    public struct Legend
+    [Serializable]
+    public struct WmsLegend
     {
-        public MimeType Format;
+        public string Format;
         public uint Height;
         public string LegendURL;
         public OnlineResource OnlineResource;

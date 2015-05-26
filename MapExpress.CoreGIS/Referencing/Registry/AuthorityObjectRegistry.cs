@@ -9,39 +9,9 @@ namespace MapExpress.CoreGIS.Referencing.Registry
     {
         public abstract IList <T> All { get; }
 
-        public virtual void RegisterRange (IList <T> authorityObjects)
-        {
-            foreach (var iterObject in authorityObjects)
-            {
-                Register (iterObject);
-            }
-        }
-
-        // TODO:!!! 
-        //1. Что-то не понятно как тут работает.
-        //2. Может для IAuthorityObject сделать обязательным InitAuthorityAliases ?
-        //3. Если да то при  Register (T authorityObject) вызывать этот метод
-        //3.1. И тогда в регитсри классах сделать не add, а  Register и убрать public abstract IList <T> All { get; } - сделать его здесь
-        public virtual void Register (T authorityObject)
-        {
-            T first = null;
-            foreach (var iter in All)
-            {
-                if (iter.Equals (authorityObject))
-                {
-                    first = iter;
-                    break;
-                }
-            }
-            if (first == null)
-            {
-                All.Add (authorityObject);
-                first = authorityObject;
-            }
-
-            first.AuthorityAliases.AddRange (authorityObject.AuthorityAliases.All ());
-        }
-
+        
+       // TODO: Везде заменить Get на From	FromEpsgCode
+		
         public virtual T GetByEpsgCode (uint epsgCode)
         {
             return GetByAuthority (AuthorityType.EPSG, epsgCode);
@@ -93,6 +63,15 @@ namespace MapExpress.CoreGIS.Referencing.Registry
                 }
             }
             throw new MapExpressException (string.Format ("Object not found: {0}:'{1}'", type.ToString (), name));
+        }
+
+        public virtual T GetFirstByAuthorityName (string name)
+        {
+            foreach (var iterObject in from iterObject in All let iterVal = iterObject.AuthorityAliases.FindFirstByName (name) where iterVal != null select iterObject)
+            {
+                return iterObject;
+            }
+            throw new MapExpressException (string.Format ("Object not found: {0}", name));
         }
     }
 }

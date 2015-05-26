@@ -1,43 +1,52 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
+using System.ComponentModel;
 using MapExpress.OpenGIS.Wms.Metadata;
+
+#endregion
 
 namespace MapExpress.OpenGIS.Wms.Operations
 {
-    public struct FeatureInfoRequest : IWmsRequest
+    public class FeatureInfoRequest : MapRequest
     {
-        public MapAttributes MapAttributes { get; set; }
-
-        public BoundingBox BoundingBox { get; set; }
-
-        public string ExceptionFormat { get; set; }
-
-        public string[] Layers { get; set; }
-
-        public string[] QueryLayers { get; set; }
-
-        public string[] Styles { get; set; }
-
-        public PixelPoint QueryPoint { get; set; }
-
-        #region IWmsRequest Members
-
-        public string RequestName { get; set; }
-
-        public string Version { get; set; }
-
-        public bool ValidateParameters (out IList <WmsException> exceptions)
+        public FeatureInfoRequest (string version = "1.3.0")
         {
-            throw new NotImplementedException ();
+            FeatureCount = 1;
+            Version = version;
         }
 
-        #endregion
+        
+        public PixelPoint QueryPoint { get; set; }
+
+        public string InfoFormat
+        {
+            get;
+            set;
+        }
+
+        public int FeatureCount
+        {
+            get;
+            set;
+        }
+
+        public override string RequestName
+        {
+            get { return "GetFeatureInfo"; }
+        }
     }
 
     public struct PixelPoint
     {
-        public double Column { get; set; }
+        public PixelPoint (double x, double y) : this ()
+        {
+            X = x;
+            Y = y;
+        }
 
-        public double Row { get; set; }
+        public double X { get; set; }
+
+        public double Y { get; set; }
     }
 }

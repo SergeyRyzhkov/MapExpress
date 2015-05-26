@@ -2,9 +2,12 @@
 using System.Text;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 
+// TODO: Проверить double.parse на всех культурах
+// TODO: http://stackoverflow.com/questions/721950/double-parse-internationalization-problem
+
 namespace MapExpress.CoreGIS.Geometries.Converters
 {
-    //TODO:Each entity has a keyword in upper case!
+    // TODO: Each entity has a keyword in upper case!
     public class WKTGeometryWriter : TextGeometryWriter
     {
         public WKTGeometryWriter () : base ("{0} ({1})", " ", "(", ")")
