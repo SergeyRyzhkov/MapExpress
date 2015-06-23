@@ -35,6 +35,11 @@ namespace MapExpress.OpenGIS.Wms
             }
         }
 
+        public string ServiceUrl
+        {
+            get { return serviceUrl; }
+        }
+
         public string GetCapabilitiesUrl (MetadataRequest request)
         {
             return serviceUrl + string.Format (GetCapabilitiesTemplate, string.IsNullOrEmpty (request.Version) ? "1.3.0" : request.Version);
@@ -65,7 +70,14 @@ namespace MapExpress.OpenGIS.Wms
             bboxSb.Append (mapRequest.BoundingBox.MinX.ToString ().Replace (",", ".")).Append (",").Append (mapRequest.BoundingBox.MinY.ToString ().Replace (",", ".")).Append (",").Append (mapRequest.BoundingBox.MaxX.ToString ().Replace (",", ".")).Append (",").Append (
                 mapRequest.BoundingBox.MaxY.ToString ().Replace (",", "."));
 
-            return serviceUrl + string.Format (GetMapTemplate, mapRequest.Version, layers, styles, mapRequest.CRS, bboxSb, mapRequest.MapAttributes.Width, mapRequest.MapAttributes.Height, mapRequest.MapAttributes.Format, mapRequest.MapAttributes.Transparent, mapRequest.MapAttributes.Transparent ? "" : mapRequest.MapAttributes.BgColorRRGGBB);
+            var result = serviceUrl + string.Format (GetMapTemplate, mapRequest.Version, layers, styles, mapRequest.CRS, bboxSb, mapRequest.MapAttributes.Width, mapRequest.MapAttributes.Height, mapRequest.MapAttributes.Format, mapRequest.MapAttributes.Transparent, mapRequest.MapAttributes.Transparent ? "" : mapRequest.MapAttributes.BgColorRRGGBB);
+            
+            if (mapRequest.MapAttributes.Transparent)
+            {
+                result = result.Replace ("&BGCOLOR=", "");
+            }
+
+            return result;
         }
 
         public string GetMapUrl (WmsBoundingBox boundingBox)

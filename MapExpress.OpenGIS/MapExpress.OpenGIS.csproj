@@ -147,15 +147,15 @@
     <Compile Include="Wms\WmsService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\nRsn\nRsn.Core\nRsn.Core.Util\nRsn.Core.Util.csproj">
       <Project>{6F54D7EA-A556-4E1F-8371-B59B6E0B90A9}</Project>
       <Name>nRsn.Core.Util</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

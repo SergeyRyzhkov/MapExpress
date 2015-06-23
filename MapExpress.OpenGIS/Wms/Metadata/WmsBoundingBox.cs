@@ -37,6 +37,19 @@ namespace MapExpress.OpenGIS.Wms.Metadata
             get { return MinX == 0 && MinY == 0 && MaxX == 0 && MaxY == 0; }
         }
 
+        public double Width
+        {
+            get { return MaxX - MinX; }
+        }
+
+        public double Height
+        {
+            get
+            {
+                return MaxY - MinY;
+            }
+        }
+
         public override string ToString ()
         {
             var bboxSb = new StringBuilder ().Append (CRS).Append ("   ");
