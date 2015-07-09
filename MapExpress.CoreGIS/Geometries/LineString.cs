@@ -118,7 +118,7 @@ namespace MapExpress.CoreGIS.Geometries
             get { return vertices.Last (); }
             set
             {
-                if (!vertices.Any())
+                if (!vertices.Any ())
                 {
                     vertices.Add (value);
                 }
@@ -128,9 +128,10 @@ namespace MapExpress.CoreGIS.Geometries
                     if (pointsCount == 1)
                     {
                         vertices.Add (value);
-                    }else
+                    }
+                    else
                     {
-                        vertices[vertices.Count - 1] = value;
+                        vertices [vertices.Count - 1] = value;
                     }
                 }
             }

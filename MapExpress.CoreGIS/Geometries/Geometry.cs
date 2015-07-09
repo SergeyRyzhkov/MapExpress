@@ -2,7 +2,6 @@
 
 using MapExpress.CoreGIS.Geometries.Converters;
 using MapExpress.CoreGIS.Referencing.Operations;
-using MapExpress.CoreGIS.Referencing.Operations.Projections;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
@@ -11,10 +10,10 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 
 namespace MapExpress.CoreGIS.Geometries
 {
-	// TODO: Может везде (где используется экспорт\импорт, в системах координат, проекциях ит.д.) переименовать методы CreateFromWKT на FromWKT и ExportToGeoJSON на ToGeoJSON и т.д.
-	
+    // TODO: Может везде (где используется экспорт\импорт, в системах координат, проекциях ит.д.) переименовать методы CreateFromWKT на FromWKT и ExportToGeoJSON на ToGeoJSON и т.д.
+
     // TODO: Пересечение линий https://github.com/pgkelley4/line-segments-intersect/blob/master/js/line-segments-intersect.js
-	// http://alienryderflex.com/intersect/
+    // http://alienryderflex.com/intersect/
     // TODO: Методы https://developers.arcgis.com/net/store/api-reference?T_Esri_ArcGISRuntime_Geometry_GeometryEngine.htm
     public abstract class Geometry : IGeometry
     {
@@ -22,7 +21,7 @@ namespace MapExpress.CoreGIS.Geometries
         private static readonly WKTGeometryWriter wktGeometryWriter = new WKTGeometryWriter ();
         private static readonly GeoJSONGeometryReader geojsonGeometryReader = new GeoJSONGeometryReader ();
         private static readonly GeoJSONGeometryWriter geojsonGeometryWriter = new GeoJSONGeometryWriter ();
-        private GeometryCoordinateTransform geometryCoordinateTransform = new GeometryCoordinateTransform ();
+        private readonly GeometryCoordinateTransform geometryCoordinateTransform = new GeometryCoordinateTransform ();
 
         protected Geometry () : this (null)
         {
@@ -91,7 +90,6 @@ namespace MapExpress.CoreGIS.Geometries
             return geometryCoordinateTransform.Transform (coordinateOperation, this);
         }
 
-        
 
         public override string ToString ()
         {
@@ -108,7 +106,7 @@ namespace MapExpress.CoreGIS.Geometries
             return geojsonGeometryReader.Read (geoJSonText);
         }
 
-        
+
         // TODO: А тут не интерфейсы надо использовать?
         // И вообще это в реляц.операторы
         public static bool Equals (IGeometry g1, IGeometry g2)

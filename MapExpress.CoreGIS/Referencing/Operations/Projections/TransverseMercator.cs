@@ -2,10 +2,10 @@
 
 using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
 
 #endregion
 

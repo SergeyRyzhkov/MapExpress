@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.IO;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Geometries.Converters
 {
@@ -162,7 +166,7 @@ namespace MapExpress.CoreGIS.Geometries.Converters
 
         private static void WriteInt (MemoryStream writer, ByteOrderType byteOrderType, int value)
         {
-            byte[] bytes = BitConverter.GetBytes (value);
+            var bytes = BitConverter.GetBytes (value);
             if (byteOrderType == ByteOrderType.BigEndian)
             {
                 Array.Reverse (bytes, 0, 4);
@@ -175,7 +179,7 @@ namespace MapExpress.CoreGIS.Geometries.Converters
 
         private static void WriteDouble (MemoryStream writer, ByteOrderType byteOrderType, double value)
         {
-            byte[] bytes = BitConverter.GetBytes (value);
+            var bytes = BitConverter.GetBytes (value);
             if (byteOrderType == ByteOrderType.BigEndian)
             {
                 Array.Reverse (bytes, 0, 8);

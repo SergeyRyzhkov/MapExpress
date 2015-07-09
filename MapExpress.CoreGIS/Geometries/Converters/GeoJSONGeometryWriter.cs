@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Text;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Geometries.Converters
 {
     public class GeoJSONGeometryWriter : TextGeometryWriter
     {
-        public GeoJSONGeometryWriter (): base ("{{\"type\":\"{0}\",\"coordinates\":[{1}]}}", ",", "[", "]")
+        public GeoJSONGeometryWriter () : base ("{{\"type\":\"{0}\",\"coordinates\":[{1}]}}", ",", "[", "]")
         {
         }
 

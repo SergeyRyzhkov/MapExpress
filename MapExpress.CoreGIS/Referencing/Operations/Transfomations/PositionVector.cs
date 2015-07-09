@@ -2,11 +2,11 @@
 
 using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Parameters;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
+using nRsn.Core.Util;
 
 #endregion
 
@@ -20,7 +20,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
         {
         }
 
-        public PositionVector (IGeodeticCRS sourceCRS, IGeodeticCRS targetCRS, DatumShiftParameters parameters): base (sourceCRS, targetCRS, parameters)
+        public PositionVector (IGeodeticCRS sourceCRS, IGeodeticCRS targetCRS, DatumShiftParameters parameters) : base (sourceCRS, targetCRS, parameters)
         {
             Parameters = parameters;
         }
@@ -45,8 +45,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
         {
             return InternalTransform (point, false);
         }
-      
-      
+
+
         public override ICoordinate TransformInverse (ICoordinate point)
         {
             return InternalTransform (point, true);
@@ -65,7 +65,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             var resultMatrix = m * rotationMatrix * sourceMatrix + frameRotationMatrix + translationVectorMatrix;
             return new Coordinate (resultMatrix [0, 0], resultMatrix [1, 0], resultMatrix [2, 0]);
         }
-        
+
 
         protected virtual Matrix InitSourceCoordMatrix (ICoordinate sourceCoord)
         {
@@ -79,23 +79,22 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
         protected virtual Matrix InitTranslationVectorMatrix (bool inverse)
         {
             var matrix = new Matrix (3);
-            matrix[0, 0] = inverse ? -1 * Parameters.Dx : Parameters.Dx;
-            matrix[1, 0] = inverse ? -1 * Parameters.Dy : Parameters.Dy;
-            matrix[2, 0] = inverse ? -1 * Parameters.Dz : Parameters.Dz;
+            matrix [0, 0] = inverse ? -1 * Parameters.Dx : Parameters.Dx;
+            matrix [1, 0] = inverse ? -1 * Parameters.Dy : Parameters.Dy;
+            matrix [2, 0] = inverse ? -1 * Parameters.Dz : Parameters.Dz;
 
             return matrix;
         }
 
         protected virtual Matrix InitRotationMatrix (bool inverse)
         {
-
             var eXRad = Parameters.Ex / 3600.0 * MathUtil.DEG2RAD;
             var eYRad = Parameters.Ey / 3600.0 * MathUtil.DEG2RAD;
             var eZRad = Parameters.Ez / 3600.0 * MathUtil.DEG2RAD;
 
             eXRad = inverse ? eXRad * -1.0 : eXRad;
             eYRad = inverse ? eYRad * -1.0 : eYRad;
-            eZRad = inverse ? eZRad * -1.0 : eZRad; 
+            eZRad = inverse ? eZRad * -1.0 : eZRad;
 
             var matrix = new Matrix (3, 3);
             matrix [0, 0] = 1.0;
@@ -103,9 +102,9 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             matrix [0, 2] = eYRad;
             matrix [1, 0] = eZRad;
             matrix [1, 1] = 1.0;
-            matrix[1, 2] = -eXRad;
+            matrix [1, 2] = -eXRad;
             matrix [2, 0] = -eYRad;
-            matrix[2, 1] = eXRad;
+            matrix [2, 1] = eXRad;
             matrix [2, 2] = 1.0;
             return matrix;
         }

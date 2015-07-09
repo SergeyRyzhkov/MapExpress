@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -81,8 +85,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             }
 
             const double delTol = 1e-14;
-            double px1 = lon;
-            double py1 = lat;
+            var px1 = lon;
+            var py1 = lat;
 
             var lon1 = px1 / c;
             var lat1 = py1;

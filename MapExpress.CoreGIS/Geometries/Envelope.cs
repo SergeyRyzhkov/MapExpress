@@ -9,6 +9,7 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 
 namespace MapExpress.CoreGIS.Geometries
 {
+    // TODO: Нет этого класса в экспорте, трансформации координат и т.д.
     public class Envelope : Geometry, IEnvelope
     {
         public Envelope (ICoordinateReferenceSystem coordSys) : this (coordSys, new Point (), new Point ())
@@ -98,6 +99,7 @@ namespace MapExpress.CoreGIS.Geometries
             get { return TopRight.IsEmpty || BottomLeft.IsEmpty; }
         }
 
+        // TODO: Точки также надо клонировать. И сделать этот методо (Через интерфейс) у всех геометрий
         public override object Clone ()
         {
             return new Envelope (SpatialReferenceSystem, BottomLeft, TopRight);

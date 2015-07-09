@@ -1,8 +1,8 @@
 ﻿#region
 
-#endregion
-
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Datums
 {

@@ -175,17 +175,13 @@
     <Compile Include="Referencing\Units\LinearUnit.cs" />
     <Compile Include="Referencing\Units\TimeUnit.cs" />
     <Compile Include="Referencing\Units\Unit.cs" />
-    <Compile Include="Utils\BigEndianBitConverter.cs" />
-    <Compile Include="Utils\ByteOrderType.cs" />
-    <Compile Include="Utils\ByteUtils.cs" />
-    <Compile Include="Utils\MathUtil.cs" />
-    <Compile Include="Utils\Matrix.cs" />
-    <Compile Include="Utils\StreamTokenizer.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Utils\Json\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\nRsn\nRsn.Core\nRsn.Core.Util\nRsn.Core.Util.csproj">
+      <Project>{6F54D7EA-A556-4E1F-8371-B59B6E0B90A9}</Project>
+      <Name>nRsn.Core.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MapExpress.OpenGIS\MapExpress.OpenGIS.csproj">
       <Project>{6EA7AEA9-3A25-4E55-BDC2-DCC2C73E79C9}</Project>
       <Name>MapExpress.OpenGIS</Name>

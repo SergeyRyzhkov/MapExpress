@@ -22,11 +22,10 @@ namespace MapExpress.CoreGIS.Referencing.Converters
     // TODO: Для Kroval сделать параметры по умолчанию. Они пробиты в коде
     // http://www.geotoolkit.org/apidocs/org/geotoolkit/referencing/operation/provider/Krovak.html
 
-    
 
     public class WKTCoordinateSystemWriter : ICoordinateSystemWriter
     {
-        private static WKTCoordinateSystemWriter instance = new WKTCoordinateSystemWriter ();
+        private static readonly WKTCoordinateSystemWriter instance = new WKTCoordinateSystemWriter ();
 
         private static string geocentricCRSTemplate = "GEOCCS[\"{0}\",{1},{2},{3},{4}{5}]";
         private static string geographicCRSTemplate = "GEOGCS[\"{0}\",{1},{2},{3},{4}{5}]";

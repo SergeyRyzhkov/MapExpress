@@ -1,9 +1,9 @@
 ﻿#region
 
-#endregion
-
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Geometries
 {

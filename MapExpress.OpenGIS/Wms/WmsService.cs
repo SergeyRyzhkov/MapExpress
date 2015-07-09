@@ -1,6 +1,5 @@
 ﻿#region
 
-
 using System;
 using System.Collections.Specialized;
 using System.Drawing;
@@ -46,14 +45,14 @@ namespace MapExpress.OpenGIS.Wms
                 return GetCapabilities ((MetadataRequest) request);
             }
 
-            if (request is MapRequest)
-            {
-                return GetMap ((MapRequest) request);
-            }
-
             if (request is FeatureInfoRequest)
             {
                 return GetFeatureInfo ((FeatureInfoRequest) request);
+            }
+
+            if (request is MapRequest)
+            {
+                return GetMap ((MapRequest) request);
             }
 
             return null;

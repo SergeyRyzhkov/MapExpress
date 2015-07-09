@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -10,13 +12,15 @@ using MapExpress.CoreGIS.Referencing.Operations.Parameters;
 using MapExpress.CoreGIS.Referencing.Operations.Projections;
 using MapExpress.CoreGIS.Referencing.Registry;
 using MapExpress.CoreGIS.Referencing.Units;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Units;
+using nRsn.Core.Util;
+
+#endregion
 
 // TODO: Создаваь объекты через фактори.
 
@@ -24,7 +28,7 @@ namespace MapExpress.CoreGIS.Referencing.Converters
 {
     public class WKTCoordinateSystemReader : ICoordinateSystemReader
     {
-        private static WKTCoordinateSystemReader instance = new WKTCoordinateSystemReader ();
+        private static readonly WKTCoordinateSystemReader instance = new WKTCoordinateSystemReader ();
 
         private WKTCoordinateSystemReader ()
         {

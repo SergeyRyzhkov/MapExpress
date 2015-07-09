@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -50,9 +54,9 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 
         protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
-            double px = projectedCordinate.X - Parameters.FalseEasting;
-            double py = projectedCordinate.Y - Parameters.FalseNorthing;
-            double arg = py / (1.4142135623731 * Parameters.Ellipsoid.SemiMajorAxis);
+            var px = projectedCordinate.X - Parameters.FalseEasting;
+            var py = projectedCordinate.Y - Parameters.FalseNorthing;
+            var arg = py / (1.4142135623731 * Parameters.Ellipsoid.SemiMajorAxis);
             if (Math.Abs (arg) > 0.999999999999)
             {
                 arg = 0.999999999999;

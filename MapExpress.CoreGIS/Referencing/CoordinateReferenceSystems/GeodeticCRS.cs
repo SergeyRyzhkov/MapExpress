@@ -85,7 +85,7 @@ namespace MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems
         {
             unchecked
             {
-                int result = base.GetHashCode ();
+                var result = base.GetHashCode ();
                 result = (result * 397) ^ (ToWGS84 != null ? ToWGS84.GetHashCode () : 0);
                 result = (result * 397) ^ (Datum != null ? Datum.GetHashCode () : 0);
                 return result;

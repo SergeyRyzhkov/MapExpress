@@ -12,6 +12,11 @@ using nRsn.Core.Util;
 // TODO:Весь проект перенести в MapExpress.OpenGIS.OGS
 // TODO: в MapResponse текст ошибки
 // TODO: Сделать методы получения URI
+// TODO:    if (!wmsLoadInfo.WmsVersion.StartsWith ("1.3"))
+//                    {
+//                        xyRequestUrl = xyRequestUrl.Replace ("CRS", "SRS");
+//                    }
+
 
 namespace MapExpress.OpenGIS.Wms
 {

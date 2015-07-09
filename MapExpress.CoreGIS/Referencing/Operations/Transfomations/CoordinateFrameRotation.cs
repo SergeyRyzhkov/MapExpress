@@ -2,7 +2,7 @@
 
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
+using nRsn.Core.Util;
 
 #endregion
 
@@ -10,11 +10,11 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
 {
     public class CoordinateFrameRotation : PositionVector
     {
-        public CoordinateFrameRotation (DatumShiftParameters parameters): this (null, null, parameters)
+        public CoordinateFrameRotation (DatumShiftParameters parameters) : this (null, null, parameters)
         {
         }
 
-        public CoordinateFrameRotation (GeocentricCRS sourceCRS, GeocentricCRS targetCRS, DatumShiftParameters parameters): base (sourceCRS, targetCRS, parameters)
+        public CoordinateFrameRotation (GeocentricCRS sourceCRS, GeocentricCRS targetCRS, DatumShiftParameters parameters) : base (sourceCRS, targetCRS, parameters)
         {
         }
 
@@ -30,15 +30,15 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             eZRad = inverse ? eZRad * -1.0 : eZRad;
 
             var matrix = new Matrix (3, 3);
-            matrix[0, 0] = 1.0;
-            matrix[0, 1] = -eZRad;
-            matrix[0, 2] = eYRad;
-            matrix[1, 0] = eZRad;
-            matrix[1, 1] = 1.0;
-            matrix[1, 2] = -eXRad;
-            matrix[2, 0] = -eYRad;
-            matrix[2, 1] = eXRad;
-            matrix[2, 2] = 1.0;
+            matrix [0, 0] = 1.0;
+            matrix [0, 1] = -eZRad;
+            matrix [0, 2] = eYRad;
+            matrix [1, 0] = eZRad;
+            matrix [1, 1] = 1.0;
+            matrix [1, 2] = -eXRad;
+            matrix [2, 0] = -eYRad;
+            matrix [2, 1] = eXRad;
+            matrix [2, 2] = 1.0;
             return matrix;
         }
     }

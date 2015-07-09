@@ -1,9 +1,13 @@
-﻿using System.IO;
+﻿#region
+
+using System.IO;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Units;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Converters
 {

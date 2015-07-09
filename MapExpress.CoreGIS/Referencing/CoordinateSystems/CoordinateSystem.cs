@@ -10,7 +10,7 @@ namespace MapExpress.CoreGIS.Referencing.CoordinateSystems
 {
     public class CoordinateSystem : ICoordinateSystem
     {
-        private IList <ICoordinateSystemAxis> axisList = new List <ICoordinateSystemAxis> ();
+        private readonly IList <ICoordinateSystemAxis> axisList = new List <ICoordinateSystemAxis> ();
 
         public CoordinateSystem (IEnumerable <ICoordinateSystemAxis> axis, string name)
         {
@@ -59,7 +59,7 @@ namespace MapExpress.CoreGIS.Referencing.CoordinateSystems
         {
             unchecked
             {
-                int result = (Name != null ? Name.GetHashCode () : 0);
+                var result = (Name != null ? Name.GetHashCode () : 0);
                 result = (result * 397) ^ (Unit != null ? Unit.GetHashCode () : 0);
                 result = (result * 397) ^ (AxisList != null ? AxisList.GetHashCode () : 0);
                 return result;

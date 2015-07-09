@@ -15,7 +15,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
     public class GeographicTransformation : SingleCoordinateOperation, ITransformation
     {
         private PositionVector datumTransformOperation;
-        private DatumTransformationType datumTransformationType;
+        private readonly DatumTransformationType datumTransformationType;
         private GeographicGeocentricConversion sourceGeocentricConversion;
         private GeographicGeocentricConversion targetGeocentricConversion;
 
@@ -39,17 +39,17 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             : this (new GeographicTrasformParameters (sourceEllipsoid, targetEllipsoid, dx, dy, dz), datumTransformationType)
         {
         }
-        
+
         public GeographicTransformation (IEllipsoid sourceEllipsoid, IEllipsoid targetEllipsoid, double dx, double dy, double dz, double ex, double ey, double ez, double ppm)
             : this (sourceEllipsoid, targetEllipsoid, new DatumShiftParameters (dx, dy, dz, ex, ey, ez, ppm), DatumTransformationType.AutoDetect)
         {
         }
-        
+
         public GeographicTransformation (IEllipsoid sourceEllipsoid, IEllipsoid targetEllipsoid, double dx, double dy, double dz, double ex, double ey, double ez, double ppm, DatumTransformationType datumTransformationType)
             : this (sourceEllipsoid, targetEllipsoid, new DatumShiftParameters (dx, dy, dz, ex, ey, ez, ppm), datumTransformationType)
         {
         }
-        
+
         public GeographicTransformation (IEllipsoid sourceEllipsoid, IEllipsoid targetEllipsoid, DatumShiftParameters datumShiftParameters)
             : this (new GeographicTrasformParameters (sourceEllipsoid, targetEllipsoid, datumShiftParameters), DatumTransformationType.AutoDetect)
         {
@@ -59,8 +59,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             : this (new GeographicTrasformParameters (sourceEllipsoid, targetEllipsoid, datumShiftParameters), datumTransformationType)
         {
         }
-        
-        public GeographicTransformation (IGeographicCRS sourceCRS, IGeographicCRS targetCRS, DatumShiftParameters datumShiftParameters )
+
+        public GeographicTransformation (IGeographicCRS sourceCRS, IGeographicCRS targetCRS, DatumShiftParameters datumShiftParameters)
             : this (sourceCRS, targetCRS, new GeographicTrasformParameters (sourceCRS.Datum.Ellipsoid, targetCRS.Datum.Ellipsoid, datumShiftParameters), DatumTransformationType.AutoDetect)
         {
         }
@@ -74,7 +74,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
         public GeographicTransformation (IGeographicCRS sourceCRS, IGeographicCRS targetCRS, GeographicTrasformParameters parameters)
             : this (sourceCRS, targetCRS, parameters, DatumTransformationType.AutoDetect)
         {
-
         }
 
         public GeographicTransformation (IGeographicCRS sourceCRS, IGeographicCRS targetCRS, GeographicTrasformParameters parameters, DatumTransformationType datumTransformationType) : base (sourceCRS, targetCRS, parameters)

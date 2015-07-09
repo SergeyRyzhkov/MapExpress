@@ -21,7 +21,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
 
         public bool Inverse { get; set; }
 
-        public  IGeometry Transform (ICoordinateOperation coordinateOperation, IGeometry geometry)
+        public IGeometry Transform (ICoordinateOperation coordinateOperation, IGeometry geometry)
         {
             var geomType = geometry.GeometryType;
             switch (geomType)
@@ -48,13 +48,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations
         }
 
 
-        public  IPoint Transform (ICoordinateOperation coordinateOperation, IPoint point)
+        public IPoint Transform (ICoordinateOperation coordinateOperation, IPoint point)
         {
             return Inverse ? new Point (coordinateOperation.TargetCRS, coordinateOperation.MathTransform.TransformInverse (point.X, point.Y, point.Z)) : new Point (coordinateOperation.TargetCRS, coordinateOperation.MathTransform.Transform (point.X, point.Y, point.Z));
         }
 
 
-        public  ILinearRing Transform (ICoordinateOperation coordinateOperation, ILinearRing lineString)
+        public ILinearRing Transform (ICoordinateOperation coordinateOperation, ILinearRing lineString)
         {
             var result = new LinearRing (coordinateOperation.TargetCRS);
             foreach (var iterPoint in lineString.Vertices)
@@ -64,7 +64,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  ILineString Transform (ICoordinateOperation coordinateOperation, ILineString lineString)
+        public ILineString Transform (ICoordinateOperation coordinateOperation, ILineString lineString)
         {
             var result = new LineString (coordinateOperation.TargetCRS);
             foreach (var iterPoint in lineString.Vertices)
@@ -74,7 +74,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  IPolygon Transform (ICoordinateOperation coordinateOperation, IPolygon polygon)
+        public IPolygon Transform (ICoordinateOperation coordinateOperation, IPolygon polygon)
         {
             var result = new Polygon (coordinateOperation.TargetCRS) {ExteriorRing = Transform (coordinateOperation, polygon.ExteriorRing)};
             foreach (var iterInteriorRing in polygon.InteriorRings)
@@ -84,7 +84,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  IMultiPoint Transform (ICoordinateOperation coordinateOperation, IMultiPoint multiPoint)
+        public IMultiPoint Transform (ICoordinateOperation coordinateOperation, IMultiPoint multiPoint)
         {
             var result = new MultiPoint (coordinateOperation.TargetCRS);
             foreach (var iterPoint in multiPoint.Points)
@@ -94,7 +94,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  IMultiLineString Transform (ICoordinateOperation coordinateOperation, IMultiLineString multiLineString)
+        public IMultiLineString Transform (ICoordinateOperation coordinateOperation, IMultiLineString multiLineString)
         {
             var result = new MultiLineString (coordinateOperation.TargetCRS);
             foreach (var iterLineString in multiLineString.LineStrings)
@@ -104,7 +104,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  IMultiPolygon Transform (ICoordinateOperation coordinateOperation, IMultiPolygon multiPolygon)
+        public IMultiPolygon Transform (ICoordinateOperation coordinateOperation, IMultiPolygon multiPolygon)
         {
             var result = new MultiPolygon (coordinateOperation.TargetCRS);
             foreach (var iterMultiPolygon in multiPolygon.Polygons)
@@ -114,7 +114,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             return result;
         }
 
-        public  IGeometryCollection Transform (ICoordinateOperation coordinateOperation, IGeometryCollection geometryCollection)
+        public IGeometryCollection Transform (ICoordinateOperation coordinateOperation, IGeometryCollection geometryCollection)
         {
             var result = new GeometryCollection (coordinateOperation.TargetCRS);
             foreach (IGeometry iterGeom in geometryCollection.Geometries)

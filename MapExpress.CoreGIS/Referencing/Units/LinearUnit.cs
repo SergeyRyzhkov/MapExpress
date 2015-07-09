@@ -1,8 +1,8 @@
 ﻿#region
 
-#endregion
-
 using MapExpress.OpenGIS.GeoAPI.Referencing.Units;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Units
 {

@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.OpenGIS.GeoAPI.Authority;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 {
@@ -142,7 +146,6 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
         public override int GetHashCode ()
         {
             return Dx.GetHashCode () + Dy.GetHashCode () + Dz.GetHashCode () + Ex.GetHashCode () + Ey.GetHashCode () + Ez.GetHashCode () + Ppm.GetHashCode ();
-      
         }
 
         public static bool operator == (DatumShiftParameters left, DatumShiftParameters right)

@@ -1,9 +1,5 @@
 ﻿#region
 
-#endregion
-
-#region
-
 using System;
 using MapExpress.CoreGIS.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
@@ -61,7 +57,7 @@ namespace MapExpress.CoreGIS.Geometries
 
         public BoundingBox Grow (double amountInX, double amountInY)
         {
-            var box = (BoundingBox)Clone ();
+            var box = (BoundingBox) Clone ();
             box.BottomLeft.X -= amountInX;
             box.BottomLeft.Y -= amountInY;
             box.TopRight.X += amountInX;

@@ -36,7 +36,7 @@ namespace MapExpress.CoreGIS.Geometries.Converters
         {
             if (geometry is IPoint)
             {
-				// TODO: Что-то косячет если координаты с дробной частью
+                // TODO: Что-то косячет если координаты с дробной частью
                 return Point ((IPoint) geometry);
             }
             if (geometry is IMultiPoint)

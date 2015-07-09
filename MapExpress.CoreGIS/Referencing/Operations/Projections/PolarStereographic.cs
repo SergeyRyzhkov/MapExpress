@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -89,13 +93,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
                 py = Parameters.SemiMajor * a * (coslat0 * sinlat - sinlat0 * coslat * Math.Cos (dlon)) + Parameters.FalseNorthing;
                 return new Coordinate (px, py);
             }
-            double x = 2 * Math.Atan (Ssfn (lat, sinlat, e)) - MathUtil.PiHalf;
-            double cosX = Math.Cos (x);
-            double sinX = Math.Sin (x);
+            var x = 2 * Math.Atan (Ssfn (lat, sinlat, e)) - MathUtil.PiHalf;
+            var cosX = Math.Cos (x);
+            var sinX = Math.Sin (x);
             if (Math.Abs (coslat0) <= EPSLN)
             {
-                double ts = Tsfnz (e, lat * con, con * sinlat);
-                double rh = 2 * Parameters.SemiMajor * k0 * ts / cons;
+                var ts = Tsfnz (e, lat * con, con * sinlat);
+                var rh = 2 * Parameters.SemiMajor * k0 * ts / cons;
                 px = Parameters.FalseEasting + rh * Math.Sin (lon - long0);
                 py = Parameters.FalseNorthing - con * rh * Math.Cos (lon - long0);
                 return new Coordinate (px, py);
@@ -116,8 +120,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 
         protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
-            double px = projectedCordinate.X - Parameters.FalseEasting;
-            double py = projectedCordinate.Y - Parameters.FalseNorthing;
+            var px = projectedCordinate.X - Parameters.FalseEasting;
+            var py = projectedCordinate.Y - Parameters.FalseNorthing;
             double lon, lat, ts, ce, Chi;
             double long0 = MathUtil.DegToRad (Parameters.CentralMeridian);
             var rh = Math.Sqrt (px * px + py * py);

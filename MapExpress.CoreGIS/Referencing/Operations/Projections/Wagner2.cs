@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -27,18 +31,18 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             var lon = MathUtil.DegToRad (geographCoordinate.X);
             var lat = MathUtil.DegToRad (geographCoordinate.Y);
             lat = Parameters.FalseNorthing + Math.Asin (C_p1 * Math.Sin (C_p2 * lat));
-            double px = Parameters.FalseEasting + C_x * lon * Math.Cos (lat);
-            double py = C_y * lat;
+            var px = Parameters.FalseEasting + C_x * lon * Math.Cos (lat);
+            var py = C_y * lat;
             return new Coordinate (px, py);
         }
 
         protected override GeographicCoordinate ProjectInverse (ICoordinate projectedCordinate)
         {
-            double xyx = projectedCordinate.X - Parameters.FalseEasting;
-            double xyy = projectedCordinate.Y - Parameters.FalseNorthing;
+            var xyx = projectedCordinate.X - Parameters.FalseEasting;
+            var xyy = projectedCordinate.Y - Parameters.FalseNorthing;
 
-            double lat = xyy / C_y;
-            double lon = xyx / (C_x * Math.Cos (lat));
+            var lat = xyy / C_y;
+            var lon = xyx / (C_x * Math.Cos (lat));
             lat = Math.Asin (Math.Sin (lat) / C_p1) / C_p2;
 
             return new GeographicCoordinate (MathUtil.Rad2Deg (lon), MathUtil.Rad2Deg (lat));

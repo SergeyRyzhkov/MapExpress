@@ -2,8 +2,8 @@
 
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
+using nRsn.Core.Util;
 
 #endregion
 
@@ -28,7 +28,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Transfomations
             correctedPoint.Z = correctedPoint.Z - Parameters.Pz;
             return base.InternalTransform (correctedPoint, inverse);
         }
-
+        
         protected override Matrix InitRotationMatrix (bool inverse)
         {
             Parameters.Ex = Parameters.Ex * -1.0;

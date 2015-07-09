@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -98,14 +102,14 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             py = tmp;
             py *= -1;
             px *= -1;
-            double ro = Math.Sqrt (px * px + py * py);
-            double eps = Math.Atan2 (py, px);
-            double d = eps / Math.Sin (s0);
-            double s = 2 * (Math.Atan (Math.Pow (ro0 / ro, 1 / n) * Math.Tan (s0 / 2 + s45)) - s45);
-            double u = Math.Asin (Math.Cos (ad) * Math.Sin (s) - Math.Sin (ad) * Math.Cos (s) * Math.Cos (d));
-            double deltav = Math.Asin (Math.Cos (s) * Math.Sin (d) / Math.Cos (u));
+            var ro = Math.Sqrt (px * px + py * py);
+            var eps = Math.Atan2 (py, px);
+            var d = eps / Math.Sin (s0);
+            var s = 2 * (Math.Atan (Math.Pow (ro0 / ro, 1 / n) * Math.Tan (s0 / 2 + s45)) - s45);
+            var u = Math.Asin (Math.Cos (ad) * Math.Sin (s) - Math.Sin (ad) * Math.Cos (s) * Math.Cos (d));
+            var deltav = Math.Asin (Math.Cos (s) * Math.Sin (d) / Math.Cos (u));
             px = long0 - deltav / alfa;
-            double fi1 = u;
+            var fi1 = u;
             double ok = 0;
             var iter = 0;
             do

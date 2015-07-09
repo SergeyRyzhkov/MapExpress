@@ -3,20 +3,20 @@
 using System;
 using MapExpress.CoreGIS.Referencing.Converters;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Parameters;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
+using nRsn.Core.Util;
 
 #endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
     // TODO: Проверить результаты
-	// http://geographiclib.sourceforge.net/html/index.html
-	
-	// TODO: ToWKT, TOPROJ4
+    // http://geographiclib.sourceforge.net/html/index.html
+
+    // TODO: ToWKT, TOPROJ4
     // TODO: Equals
     // TODO: proj.ImportFromEPSG(4326)
     // TODO: proj.ImportFromWkt, proj4
@@ -68,7 +68,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 
         #region IProjection Members
 
-		// TODO: А это вообще где-то нужно? Если да, то найти где и использовать только, например в интерфейсе проекции.
+        // TODO: А это вообще где-то нужно? Если да, то найти где и использовать только, например в интерфейсе проекции.
         public override string ExportToWKT ()
         {
             return WKTCoordinateSystemWriter.Instance.WriteProjection (this);
@@ -119,7 +119,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
         {
             if (eccent > 1.0e-7)
             {
-                double con = eccent * sinphi;
+                var con = eccent * sinphi;
                 return ((1 - eccent * eccent) * (sinphi / (1 - con * con) - (0.5 / eccent) * Math.Log ((1 - con) / (1 + con))));
             }
             return (2 * sinphi);

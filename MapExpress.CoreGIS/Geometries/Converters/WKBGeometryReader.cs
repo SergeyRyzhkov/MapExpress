@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Geometries.Converters
 {

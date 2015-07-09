@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -84,7 +88,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
                         break;
                     case Obliq:
                         rq = Math.Sqrt (0.5 * qp);
-                        double sinphi = Math.Sin (lat0);
+                        var sinphi = Math.Sin (lat0);
                         sinb1 = Qsfnz (e, sinphi) / qp;
                         cosb1 = Math.Sqrt (1 - sinb1 * sinb1);
                         dd = Math.Cos (lat0) / (Math.Sqrt (1 - es * sinphi * sinphi) * rq * cosb1);
@@ -155,9 +159,9 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
                 double cosb = 0;
                 double b = 0;
                 coslam = Math.Cos (lam);
-                double sinlam = Math.Sin (lam);
-                double sinphi = Math.Sin (phi);
-                double q = Qsfnz (e, sinphi);
+                var sinlam = Math.Sin (lam);
+                var sinphi = Math.Sin (phi);
+                var q = Qsfnz (e, sinphi);
                 if (mode == Obliq || mode == EQUIT)
                 {
                     sinb = q / qp;
@@ -232,7 +236,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             {
                 double cosz = 0, sinz = 0;
 
-                double rh = Math.Sqrt (x * x + y * y);
+                var rh = Math.Sqrt (x * x + y * y);
                 phi = rh * 0.5;
                 if (phi > 1)
                 {
@@ -289,13 +293,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
                             if (mode == Obliq)
                             {
                                 ab = cCe * sinb1 + y * sCe * cosb1 / rho;
-                                double q = qp * ab;
+                                var q = qp * ab;
                                 y = rho * cosb1 * cCe - y * sinb1 * sCe;
                             }
                             else
                             {
                                 ab = y * sCe / rho;
-                                double q = qp * ab;
+                                var q = qp * ab;
                                 y = rho * cCe;
                             }
                         }

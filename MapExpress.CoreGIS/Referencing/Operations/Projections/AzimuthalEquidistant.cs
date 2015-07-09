@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+using nRsn.Core.Util;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 {
@@ -184,15 +188,15 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             }
             //default case
             rh = Math.Sqrt (px * px + py * py);
-            double az = Math.Atan2 (px, py);
+            var az = Math.Atan2 (px, py);
             var n1 = GN (Parameters.SemiMajor, e, sinp12);
-            double cosAz = Math.Cos (az);
-            double tmp = e * cosp12 * cosAz;
+            var cosAz = Math.Cos (az);
+            var tmp = e * cosp12 * cosAz;
             var a = -tmp * tmp / (1 - es);
-            double b = 3 * es * (1 - a) * sinp12 * cosp12 * cosAz / (1 - es);
-            double d = rh / n1;
-            double ee = d - a * (1 + a) * Math.Pow (d, 3) / 6 - b * (1 + 3 * a) * Math.Pow (d, 4) / 24;
-            double f = 1 - a * ee * ee / 2 - d * ee * ee * ee / 6;
+            var b = 3 * es * (1 - a) * sinp12 * cosp12 * cosAz / (1 - es);
+            var d = rh / n1;
+            var ee = d - a * (1 + a) * Math.Pow (d, 3) / 6 - b * (1 + 3 * a) * Math.Pow (d, 4) / 24;
+            var f = 1 - a * ee * ee / 2 - d * ee * ee * ee / 6;
             var psi = Math.Asin (sinp12 * Math.Cos (ee) + cosp12 * Math.Sin (ee) * cosAz);
             lon = AdjustLon (MathUtil.DegToRad (Parameters.CentralMeridian) + Math.Asin (Math.Sin (az) * Math.Sin (ee) / Math.Cos (psi)));
             lat = Math.Atan ((1 - es * f * sinp12 / Math.Sin (psi)) * Math.Tan (psi) / (1 - es));

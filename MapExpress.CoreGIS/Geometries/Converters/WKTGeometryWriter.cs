@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Text;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
+
+#endregion
 
 // TODO: Проверить double.parse на всех культурах
 // TODO: http://stackoverflow.com/questions/721950/double-parse-internationalization-problem

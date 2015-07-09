@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MapExpress.OpenGIS.GeoAPI.Authority;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Registry
 {
@@ -9,9 +13,9 @@ namespace MapExpress.CoreGIS.Referencing.Registry
     {
         public abstract IList <T> All { get; }
 
-        
-       // TODO: Везде заменить Get на From	FromEpsgCode
-		
+
+        // TODO: Везде заменить Get на From	FromEpsgCode
+
         public virtual T GetByEpsgCode (uint epsgCode)
         {
             return GetByAuthority (AuthorityType.EPSG, epsgCode);

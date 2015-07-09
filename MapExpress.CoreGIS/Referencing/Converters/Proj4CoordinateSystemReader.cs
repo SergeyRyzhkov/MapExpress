@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
@@ -13,11 +15,13 @@ using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Units;
 
+#endregion
+
 namespace MapExpress.CoreGIS.Referencing.Converters
 {
     public class Proj4CoordinateSystemReader : ICoordinateSystemReader
     {
-        private static Proj4CoordinateSystemReader instance = new Proj4CoordinateSystemReader ();
+        private static readonly Proj4CoordinateSystemReader instance = new Proj4CoordinateSystemReader ();
 
         private Proj4CoordinateSystemReader ()
         {
@@ -275,16 +279,16 @@ namespace MapExpress.CoreGIS.Referencing.Converters
                 var towgs84Params = towgs84.Split (',');
                 if (towgs84Params.Length >= 3)
                 {
-                    dx = double.Parse (towgs84Params[0], CultureInfo.InvariantCulture);
-                    dy = double.Parse (towgs84Params [1],  CultureInfo.InvariantCulture);
-                    dz = double.Parse (towgs84Params [2],  CultureInfo.InvariantCulture);
+                    dx = double.Parse (towgs84Params [0], CultureInfo.InvariantCulture);
+                    dy = double.Parse (towgs84Params [1], CultureInfo.InvariantCulture);
+                    dz = double.Parse (towgs84Params [2], CultureInfo.InvariantCulture);
                 }
                 if (towgs84Params.Length >= 7)
                 {
-                    rx = double.Parse (towgs84Params[3], CultureInfo.InvariantCulture);
-                    ry = double.Parse (towgs84Params[4], CultureInfo.InvariantCulture);
-                    rz = double.Parse (towgs84Params[5], CultureInfo.InvariantCulture);
-                    ds = double.Parse (towgs84Params[6], CultureInfo.InvariantCulture);
+                    rx = double.Parse (towgs84Params [3], CultureInfo.InvariantCulture);
+                    ry = double.Parse (towgs84Params [4], CultureInfo.InvariantCulture);
+                    rz = double.Parse (towgs84Params [5], CultureInfo.InvariantCulture);
+                    ds = double.Parse (towgs84Params [6], CultureInfo.InvariantCulture);
                 }
                 datum.ToWGS84 = new DatumShiftParameters (dx, dy, dz, rx, ry, rz, ds);
             }
@@ -311,37 +315,37 @@ namespace MapExpress.CoreGIS.Referencing.Converters
             string s;
             if (parameters.TryGetValue (Proj4Keyword.a, out s))
             {
-                double a = Double.Parse (s, CultureInfo.InvariantCulture);
+                var a = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.SemiMajorAxis = a;
             }
 
             if (parameters.TryGetValue (Proj4Keyword.es, out s))
             {
-                double es = Double.Parse (s, CultureInfo.InvariantCulture);
+                var es = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.Flattening = 1 - Math.Sqrt (1 - es);
             }
 
             if (parameters.TryGetValue (Proj4Keyword.rf, out s))
             {
-                double rf = Double.Parse (s, CultureInfo.InvariantCulture);
+                var rf = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.InverseFlattening = rf;
             }
 
             if (parameters.TryGetValue (Proj4Keyword.f, out s))
             {
-                double f = Double.Parse (s, CultureInfo.InvariantCulture);
+                var f = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.Flattening = f;
             }
 
             if (parameters.TryGetValue (Proj4Keyword.b, out s))
             {
-                double b = Double.Parse (s, CultureInfo.InvariantCulture);
+                var b = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.SemiMinorAxis = b;
             }
 
             if (parameters.TryGetValue (Proj4Keyword.e, out s))
             {
-                double e = Double.Parse (s, CultureInfo.InvariantCulture);
+                var e = Double.Parse (s, CultureInfo.InvariantCulture);
                 ellipsoid.Flattening = 1 - Math.Sqrt (1 - Math.Pow (e, 2.0));
             }
 

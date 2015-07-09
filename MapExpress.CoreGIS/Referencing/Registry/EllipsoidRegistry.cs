@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using MapExpress.CoreGIS.Referencing.Datums;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Registry
 {
@@ -1017,6 +1021,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
                                                                     SemiMajorAxis = 6371228,
                                                                     InverseFlattening = 0
                                                                 };
+
         // TODO: А чего их два?
         public IEllipsoid Krassovsky1940 = new Ellipsoid
                                                {
@@ -1164,6 +1169,7 @@ namespace MapExpress.CoreGIS.Referencing.Registry
                                            SemiMajorAxis = 6378135,
                                            InverseFlattening = 298.26
                                        };
+
         // TODO: Свести с WG84    
         public IEllipsoid WG1984 = new Ellipsoid
                                        {

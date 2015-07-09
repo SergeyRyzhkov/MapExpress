@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
 {
@@ -16,7 +20,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
         }
 
 
-        public GeographicTrasformParameters (IEllipsoid sourceEllipsoid, IEllipsoid targetEllipsoid, double dx, double dy, double dz, double ex, double ey, double ez, double ppm): this (sourceEllipsoid, targetEllipsoid, new DatumShiftParameters (dx, dy, dz, ex, ey, ez, ppm))
+        public GeographicTrasformParameters (IEllipsoid sourceEllipsoid, IEllipsoid targetEllipsoid, double dx, double dy, double dz, double ex, double ey, double ez, double ppm) : this (sourceEllipsoid, targetEllipsoid, new DatumShiftParameters (dx, dy, dz, ex, ey, ez, ppm))
         {
         }
 
@@ -52,7 +56,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Parameters
         {
             unchecked
             {
-                int result = (DatumShiftParameters != null ? DatumShiftParameters.GetHashCode () : 0);
+                var result = (DatumShiftParameters != null ? DatumShiftParameters.GetHashCode () : 0);
                 result = (result * 397) ^ (SourceEllipsoid != null ? SourceEllipsoid.GetHashCode () : 0);
                 result = (result * 397) ^ (TargetEllipsoid != null ? TargetEllipsoid.GetHashCode () : 0);
                 return result;

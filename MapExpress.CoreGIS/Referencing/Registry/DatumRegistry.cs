@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using MapExpress.CoreGIS.Referencing.Datums;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Registry
 {

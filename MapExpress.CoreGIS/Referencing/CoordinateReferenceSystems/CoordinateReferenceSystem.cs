@@ -93,7 +93,7 @@ namespace MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems
         {
             unchecked
             {
-                int result = (CoordinateSystem != null ? CoordinateSystem.GetHashCode () : 0);
+                var result = (CoordinateSystem != null ? CoordinateSystem.GetHashCode () : 0);
                 result = (result * 397) ^ (Name != null ? Name.GetHashCode () : 0);
                 result = (result * 397) ^ (Unit != null ? Unit.GetHashCode () : 0);
                 return result;

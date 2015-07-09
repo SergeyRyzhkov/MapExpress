@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using MapExpress.CoreGIS.Referencing.Operations.Projections;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Registry
 {
     // TODO: Регистри и в соотв. папку
     // TODO :а где SphericalMercator?
-	
-	вынести в отдельный проект? Оставить торлько интерфейсы?
+
+    // TODO: вынести в отдельный проект? Оставить торлько интерфейсы?
 
     public class ProjectionRegistry : AuthorityObjectRegistry <Projection>
     {

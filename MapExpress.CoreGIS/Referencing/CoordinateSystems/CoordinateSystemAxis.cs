@@ -95,7 +95,7 @@ namespace MapExpress.CoreGIS.Referencing.CoordinateSystems
         {
             unchecked
             {
-                int result = (Abbreviation != null ? Abbreviation.GetHashCode () : 0);
+                var result = (Abbreviation != null ? Abbreviation.GetHashCode () : 0);
                 result = (result * 397) ^ Direction.GetHashCode ();
                 result = (result * 397) ^ MinimumValue.GetHashCode ();
                 result = (result * 397) ^ MaximumValue.GetHashCode ();

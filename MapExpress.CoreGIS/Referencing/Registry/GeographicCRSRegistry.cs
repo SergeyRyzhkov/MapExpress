@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Registry
 {
@@ -2806,8 +2810,5 @@ namespace MapExpress.CoreGIS.Referencing.Registry
         {
             get { return instance ?? (instance = new GeographicCRSRegistry ()); }
         }
-
-
-       
     }
 }

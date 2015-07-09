@@ -3,8 +3,8 @@
 using System;
 using System.Globalization;
 using MapExpress.CoreGIS.Referencing.Units;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
+using nRsn.Core.Util;
 
 #endregion
 

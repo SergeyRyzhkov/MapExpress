@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Collections.Generic;
+
+#endregion
 
 namespace MapExpress.CoreGIS.Referencing.Converters
 {

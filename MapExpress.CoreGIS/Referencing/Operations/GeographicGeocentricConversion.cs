@@ -2,12 +2,12 @@
 
 using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
-using MapExpress.CoreGIS.Utils;
 using MapExpress.OpenGIS.GeoAPI.Parameters;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Datum;
 using MapExpress.OpenGIS.GeoAPI.Referencing.Operations;
+using nRsn.Core.Util;
 
 #endregion
 
@@ -16,7 +16,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations
     public class GeographicGeocentricConversion : SingleCoordinateOperation, IConversion
     {
         private IEllipsoid ellipsoid;
-        
+
         // TODO: Вынести базовые операции с данным эллипосидом в InitializeConstants!!
 
         public GeographicGeocentricConversion (IEllipsoid ellipsoid) : base (null, null, ParameterGroup.Empty)
