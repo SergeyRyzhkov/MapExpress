@@ -1,5 +1,6 @@
 ﻿#region
 
+using MapExpress.CoreGIS;
 using MapExpress.CoreGIS.Referencing;
 using MapExpress.CoreGIS.Referencing.Operations;
 using MapExpress.CoreGIS.Referencing.Registry;

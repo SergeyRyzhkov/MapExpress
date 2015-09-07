@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using MapExpress.OpenGIS.GeoAPI;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;

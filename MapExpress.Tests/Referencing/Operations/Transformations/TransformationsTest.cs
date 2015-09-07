@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using MapExpress.CoreGIS;
 using MapExpress.CoreGIS.Referencing;
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
 using MapExpress.CoreGIS.Referencing.Datums;

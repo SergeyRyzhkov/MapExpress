@@ -2,6 +2,7 @@
 
 using MapExpress.CoreGIS.Referencing.CoordinateReferenceSystems;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
+using MapExpress.OpenGIS.GeoAPI;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using nRsn.Core.Util;
 

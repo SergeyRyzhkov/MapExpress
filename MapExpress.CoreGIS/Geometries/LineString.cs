@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MapExpress.OpenGIS.GeoAPI;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
@@ -20,6 +21,24 @@ namespace MapExpress.CoreGIS.Geometries
         {
         }
 
+		В мапсюай есть такое
+		new LineString(new[]
+                        {
+                            new Point(0, 0), 
+                            new Point(10000, 10000),
+                            new Point(10000, 0),
+                            new Point(0, 10000),
+                            new Point(100000, 100000),
+                            new Point(100000, 0),
+                            new Point(0, 100000),
+                            new Point(1000000, 1000000),
+                            new Point(1000000, 0),
+                            new Point(0, 1000000),
+                            new Point(10000000, 10000000),
+                            new Point(10000000, 0),
+                            new Point(0, 10000000)
+                        }
+		
         public LineString (ICoordinateReferenceSystem coordSys, IEnumerable <double[]> verticesXy) : base (coordSys)
         {
             vertices = new Collection <IPoint> ();

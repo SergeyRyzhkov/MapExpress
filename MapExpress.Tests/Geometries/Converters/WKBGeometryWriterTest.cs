@@ -1,7 +1,8 @@
 ﻿using MapExpress.CoreGIS.Geometries;
 using MapExpress.CoreGIS.Geometries.Converters;
-using MapExpress.CoreGIS.Utils;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using nRsn.Core.Util;
 
 namespace MapExpress.Tests.Geometries.Converters
 {

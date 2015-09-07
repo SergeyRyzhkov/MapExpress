@@ -2,6 +2,7 @@
 
 using System;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
+using MapExpress.OpenGIS.GeoAPI;
 using MapExpress.OpenGIS.GeoAPI.Referencing;
 using MapExpress.OpenGIS.GeoAPI.Referencing.CoordinateReferenceSystems;
 using nRsn.Core.Util;
@@ -39,7 +40,8 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
             var a = Parameters.Ellipsoid.Eccentricity;
 
             var n1 = Math.Tan (Math.PI / 4.0 + radPoint.Lat / 2.0);
-            var n2 = (1.0 - a * Math.Sin (radPoint.Lat)) / (1.0 + a * Math.Sin (radPoint.Lat));
+            var asinLat = a * Math.Sin (radPoint.Lat);
+            var n2 = (1.0 - asinLat) / (1.0 + asinLat);
             var n3 = Parameters.Ellipsoid.SemiMajorAxis * scaleFactor * Math.Log (n1 * Math.Pow (n2, a / 2.0));
 
             var x = Parameters.FalseEasting + Parameters.Ellipsoid.SemiMajorAxis * scaleFactor * (radPoint.Lon - MathUtil.DegToRad (Parameters.CentralMeridian));
@@ -72,7 +74,7 @@ namespace MapExpress.CoreGIS.Referencing.Operations.Projections
 
         protected virtual double CorrectScaleFactor ()
         {
-            return Parameters.ScaleFactor;
+            return Parameters.ScaleFactor == 0.0 ? 1.0 : Parameters.ScaleFactor;
         }
     }
 }

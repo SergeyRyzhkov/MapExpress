@@ -10,11 +10,11 @@ namespace MapExpress.Tests.Geometries.Converters
     {
         private GeoJSONGeometryReader reader = new GeoJSONGeometryReader ();
 
-		Это что?
+        //Это что?
         
-		Надо проверить на форматы с десятичными точками
-		Везде найти использование конверт
-		double.Parse (x.ToString ().Replace (",", "."), CultureInfo.InvariantCulture)
+        //TODO: Надо проверить на форматы с десятичными точками
+        //Везде найти использование конверт
+        //double.Parse (x.ToString ().Replace (",", "."), CultureInfo.InvariantCulture)
 		
 		[TestMethod]
         public void ReadComplexMultiPolygon ()

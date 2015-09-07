@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MapExpress.CoreGIS.Referencing.Operations.Parameters;
+using MapExpress.OpenGIS.GeoAPI;
 using MapExpress.OpenGIS.GeoAPI.Authority;
 using MapExpress.OpenGIS.GeoAPI.Geometries;
 using MapExpress.OpenGIS.GeoAPI.Parameters;
@@ -46,13 +47,13 @@ namespace MapExpress.CoreGIS.Referencing.Operations
             get { return TargetCRS != null ? TargetCRS.CoordinateSystem.Dimension : 0; }
         }
 
+        // TODO: Надо оптимизировать много объектов создается. Этот методот надо реализовать в потомках, а не ICoordinate Transform (ICoordinate point);
         public double[] Transform (double x, double y, double z)
         {
             var coordinate = Transform (new Coordinate (x, y, z));
             return new[] {coordinate.X, coordinate.Y, coordinate.Z};
         }
 
-        // TODO: Надо оптимизировать много объектов создается. Этот методот надо реализовать в потомках, а не ICoordinate Transform (ICoordinate point);
         public abstract ICoordinate Transform (ICoordinate point);
 
         public abstract ICoordinate TransformInverse (ICoordinate point);
